@@ -1,3 +1,3 @@
 # ClientServer
-Hello world
-:!
+Learning client server app
+
