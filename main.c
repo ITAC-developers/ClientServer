@@ -1,1 +1,2 @@
-int Krasavchik;
+int is Lacomij kusochek
+
