@@ -7,6 +7,7 @@ struct BigKrasavchik_t
 	int size_left_hand;
 	int size_right_hand;
 };
+
 int main ()
 {
 	struct BigKrasavchik_t bigKrasavchik;
