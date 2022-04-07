@@ -2,6 +2,14 @@
 
 namespace itac::server
 {
+    enum class ServerState
+    {
+        OFF,
+        CONNECTING,
+        ERROR,
+        ON
+    };
+
     class Server
     {
     public:
@@ -10,8 +18,11 @@ namespace itac::server
 
         void Stop();
         void MainCycle();
+
+        ServerState GetStatus();
     private:
-        int port;
+        ServerState m_state = ServerState::OFF;
+        int m_port;
     };
 
 }
