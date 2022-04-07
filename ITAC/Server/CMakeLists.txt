@@ -10,6 +10,9 @@ add_compile_options(-O0 -g -Werror -Wextra -Wall -pedantic)
 
 include_directories(${SERVER_DIR}/inc)
 
-add_executable(${PROJECT_NAME}	${SERVER_DIR}/src/main.cpp
-	${SERVER_DIR}/src/Server.cpp ${SERVER_DIR}/inc/Server.h)
+add_executable(${PROJECT_NAME}	src/main.cpp
+	src/Server.cpp inc/Server.h)
 
+add_library(Server_lib src/Server.cpp inc/Server.h)
+
+add_subdirectory(Tests)

@@ -6,9 +6,9 @@ using namespace std::string_literals;
 
 namespace itac::server
 {
-    Server::Server(int port) : port(port) 
+    Server::Server(int port) : m_port(port)
     {
-        //TODO change to logger
+        m_state = ServerState::CONNECTING;
         std::cout << "server started"s << std::endl;
     }
     Server::~Server()
@@ -16,18 +16,25 @@ namespace itac::server
         std::cout << "server destroyed"s << std::endl;
     }
 
-    void Stop()
+    void Server::Stop()
     {
+        m_state = ServerState::OFF;
         std::cout << "server stopped"s << std::endl;
     }
 
-    void MainCycle()
+    void Server::MainCycle()
     {
         std::cout << "main cycle started"s << std::endl;
         while (false)
         {
             //TODO somthing useful
         }
+        m_state = ServerState::ERROR;
         std::cout << "main cycle finished"s << std::endl;
+    }
+
+    ServerState Server::GetStatus()
+    {
+        return m_state;
     }
 }
