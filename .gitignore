@@ -37,3 +37,6 @@ ITAC/Server/Out
 .vs
 .idea
 cmake-build*
+build/
+Testing
+
