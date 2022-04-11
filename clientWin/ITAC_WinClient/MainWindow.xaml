@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ITAC_WinClient"
         mc:Ignorable="d"
-        Title="ITAC-Client" Height="500" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" AutomationProperties.Name="AutorizationWindow">
+        Title="ITAC-Client" Height="500" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" AutomationProperties.Name="AutorizationWindow" Icon="Ресурс 4-8.png">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FF85B3A3" Offset="0.003"/>
@@ -34,7 +34,7 @@
 
             </Grid>
         </GroupBox>
-        <Rectangle HorizontalAlignment="Left" Height="259" Margin="80,99,0,0" Stroke="#FFD5DFE5" VerticalAlignment="Top" Width="280" RenderTransformOrigin="0.5,0.5">
+        <Rectangle HorizontalAlignment="Left" Height="143" Margin="80,202,0,0" Stroke="#FFD5DFE5" VerticalAlignment="Top" Width="280" RenderTransformOrigin="0.5,0.5">
             <Rectangle.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -44,7 +44,8 @@
                 </TransformGroup>
             </Rectangle.RenderTransform>
         </Rectangle>
-        <TextBox x:Name="DescInfo" HorizontalAlignment="Left" Margin="90,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Height="235" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black" Text="Connect" IsEnabled="False" Loaded="DescInfo_Loaded"/>
+        <TextBox x:Name="DescInfo" HorizontalAlignment="Left" Margin="90,211,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Height="124" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black" Text="Connect" IsEnabled="False" Loaded="DescInfo_Loaded"/>
+        <Image x:Name="image" Height="98" Margin="80,94,0,0" VerticalAlignment="Top" Source="Ресурс 6-8.png" HorizontalAlignment="Left" Width="303"/>
 
     </Grid>
 
