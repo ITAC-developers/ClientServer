@@ -7,5 +7,11 @@ $> cmake ..
 $> make
 $> ctest
 
+Or:
+
+$> cmake -B build
+$> cmake --build build
+$> cd build
+$> ctest
 
 
