@@ -40,3 +40,5 @@ cmake-build*
 build/
 Testing
 
+clientWin/ITAC_WinClient/obj
+clientWin/ITAC_WinClient/bin
