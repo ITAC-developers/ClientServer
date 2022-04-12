@@ -9,7 +9,7 @@ include_directories(${COMMON_DIR}/inc)
 
 add_library(common_lib
         src/FS.cpp inc/FS.h
-        src/logger.cpp inc/logger.h
+        src/Logger.cpp inc/Logger.h
         inc/own_literals.h)
 
 add_subdirectory(tests)
