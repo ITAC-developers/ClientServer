@@ -12,5 +12,5 @@ add_library(common_lib
         src/logger.cpp inc/logger.h
         inc/own_literals.h)
 
-add_subdirectory(Tests)
+add_subdirectory(tests)
 
