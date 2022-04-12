@@ -1,10 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
-project(ITACServer)
+project(ITAC-Server)
 
 set(SERVER_DIR ${CMAKE_SOURCE_DIR}/ITAC/Server)
-
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED)
 
 add_compile_options(-O0 -g -Werror -Wextra -Wall -pedantic)
 
