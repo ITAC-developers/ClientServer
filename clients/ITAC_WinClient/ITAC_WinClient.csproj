@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="WinWork.xaml.cs">
+      <DependentUpon>WinWork.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -67,8 +70,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Option.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinWork.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Option.xaml.cs">
+      <DependentUpon>Option.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -98,10 +112,13 @@
     <Resource Include="Ресурс 4-8.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Ресурс 5-8.png" />
+    <Resource Include="Ресурс 6-8.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Ресурс 6-8.png" />
+    <Resource Include="Ресурс 3-8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

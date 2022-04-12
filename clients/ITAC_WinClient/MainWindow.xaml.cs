@@ -113,5 +113,33 @@ namespace ITAC_WinClient
         {
             DescInfo.Text = MsgDesc;
         }
+
+        private void ToAuthorize_Click(object sender, RoutedEventArgs e)
+        {   
+            if (LoginField.Text=="")
+            {
+                MsgDesc = "Логин и пароль не могут быть пустыми! Проверте введенные вами данные.";
+                LoginField.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+            }
+            if (PasswordField.Password == "")
+            {
+                MsgDesc = "Логин и пароль не могут быть пустыми! Проверте введенные вами данные.";
+                PasswordField.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+            }
+
+            this.Hide(); //Hide main window
+            WinWork winWork = new WinWork();
+            winWork.Owner = this;
+            winWork.Show();
+            
+        }
+
+        private void OptionItem_Click(object sender, RoutedEventArgs e)
+        {
+            Option optionWindow = new Option();
+            // this.Hide();
+            optionWindow.Owner = this;
+            optionWindow.Show();
+        }
     }
 }
