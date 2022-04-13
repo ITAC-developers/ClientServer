@@ -1,6 +1,5 @@
 add_executable(common_test
         Logger_test.cpp
-        FS_test.cpp
 )
 
 target_link_libraries(
