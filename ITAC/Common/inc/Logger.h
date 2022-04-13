@@ -14,6 +14,13 @@
 namespace ITAC::common
 {
 
+//TODO close file in destructor
+//Test:
+//1 - GetInstance()
+//2 - SetLvl()
+//3 - SetOutput()
+//4 - Log()
+
 class Logger {
 public:
     enum class LVL
@@ -35,6 +42,7 @@ public:
     void SetLvl(LVL lvl);
     void SetOutput(std::ostream& out);
     void SetOutput(const std::filesystem::path& path);
+    std::string GetOutput();
 
     template<typename ...Args>
     void Log(LVL lvl, const std::string &func, unsigned line, Args... args)
@@ -42,7 +50,7 @@ public:
         if (lvl < level) return;
         std::scoped_lock lock(m_out_mtx);
         InnerLogStartLine(lvl, func, line);
-        InnderLog(args...);
+        InnerLog(args...);
     }
 
 private:

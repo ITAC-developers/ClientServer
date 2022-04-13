@@ -12,9 +12,11 @@ TEST(Logger, SetOutput)
     ITAC::common::Logger* log = ITAC::common::Logger::GetInstance();
 
     //set stream
-    std::stringstream result;
-    ASSERT_TRUE(log->SetOutput(result));
-
+    ASSERT_STREQ(log->GetOutput().c_str(), "Out: {std::cout}");
+    log->SetOutput("log.log"_p);
+    ASSERT_STREQ(log->GetOutput().c_str(), "Out: {\"log.log\": opened}");
+    using namespace ITAC::common;
+    ERR("testline"s);
     //set file
 }
 

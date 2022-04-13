@@ -37,7 +37,29 @@ void Logger::SetOutput(const std::filesystem::path &path)
 {
     std::scoped_lock lock(m_out_mtx);
     CloseLogFile();
+    m_log_file_name = path;
     OpenLogFile();
+    output = &m_log_stream;
+}
+
+std::string Logger::GetOutput()
+{
+    using namespace std::string_literals;
+    if (m_log_file_name.empty())
+    {
+        return "Out: {std::cout}"s;
+    }
+    std::stringstream result;
+    result << "Out: {"s << m_log_file_name << ": ";
+    if (m_log_stream.is_open())
+    {
+        result << "opened}"s;
+    }
+    else
+    {
+        result << "closed}"s;
+    }
+    return result.str();
 }
 
 std::ostream& operator<<(std::ostream& out, Logger::LVL lvl)
@@ -78,35 +100,26 @@ void Logger::OpenLogFile()
     {
         return;
     }
-    if (std::filesystem::exists(m_log_file_name))
+    if (!std::filesystem::exists(m_log_file_name))
     {
-        m_log_stream.open(m_log_file_name, std::ios::app);
-        if (m_log_stream.fail())
-        {
-            m_log_stream.clear();
-            std::cerr << "Can't open log file\n";
-            std::cerr << "Output set to stdout\n" << std::endl;
-            m_log_file_name.clear();
-            output = &std::cout;
+        std::filesystem::path dir = m_log_file_name;
+        dir.remove_filename();
+        if (!dir.empty()) {
+            std::filesystem::create_directories(dir.remove_filename());
         }
-        else
-        {
-            output = &m_log_stream;
-        }
-        return;
     }
-    //file not exists, create directory tree and file
-    std::filesystem::path dir = m_log_file_name;
-    std::filesystem::create_directories(dir.remove_filename());
+
     m_log_stream.open(m_log_file_name, std::ios::app);
     if (m_log_stream.fail())
     {
         m_log_stream.clear();
-        std::cerr << "Can't create log file\n";
-        std::cerr << "Output set to stdout\n";
+        std::cerr << "Can't open/create log file\n";
+        std::cerr << "Output set to stdout\n" << std::endl;
         m_log_file_name.clear();
         output = &std::cout;
+        return;
     }
+    output = &m_log_stream;
 }
 
 //initialize static variable of Logger
