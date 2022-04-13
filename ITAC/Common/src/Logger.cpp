@@ -26,20 +26,18 @@ void Logger::SetLvl(LVL lvl)
     level = lvl;
 }
 
-bool Logger::SetOutput(std::ostream& out)
+void Logger::SetOutput(std::ostream& out)
 {
     std::scoped_lock lock(m_out_mtx);
     output = &out;
-    if (!FS::CloseLogFile(logfile)) return false;
-    return true;
+    CloseLogFile();
 }
 
-bool Logger::SetOutput(const std::filesystem::path &path)
+void Logger::SetOutput(const std::filesystem::path &path)
 {
     std::scoped_lock lock(m_out_mtx);
-    if (!FS::OpenLogFile(path, output)) return false;
-    if (!FS::CloseLogFile(logfile)) return false;
-    logfile = path;
+    CloseLogFile();
+    OpenLogFile();
 }
 
 std::ostream& operator<<(std::ostream& out, Logger::LVL lvl)
@@ -53,9 +51,11 @@ std::ostream& operator<<(std::ostream& out, Logger::LVL lvl)
         case Logger::LVL::WRN: out << "WARNING"s; break;
         case Logger::LVL::ERR: out << " ERROR "s; break;
     }
+    return out;
 }
 
-void Logger::InnerLogStartLine(LVL lvl, const std::string &func, unsigned line) {
+void Logger::InnerLogStartLine(LVL lvl, const std::string &func, unsigned line)
+{
     std::time_t now = std::time(nullptr);
     std::tm tm = *std::localtime(&now);
     *output << "[" << std::put_time(&tm, "%x %X %Z") << "] ";
@@ -63,7 +63,55 @@ void Logger::InnerLogStartLine(LVL lvl, const std::string &func, unsigned line) 
     *output << "{" << func << ": " << line << "} ";
 }
 
+void Logger::CloseLogFile()
+{
+    if (m_log_stream.is_open())
+    {
+        m_log_stream.close();
+        m_log_file_name.clear();
+    }
+}
 
+void Logger::OpenLogFile()
+{
+    if (m_log_stream.is_open())
+    {
+        return;
+    }
+    if (std::filesystem::exists(m_log_file_name))
+    {
+        m_log_stream.open(m_log_file_name, std::ios::app);
+        if (m_log_stream.fail())
+        {
+            m_log_stream.clear();
+            std::cerr << "Can't open log file\n";
+            std::cerr << "Output set to stdout\n" << std::endl;
+            m_log_file_name.clear();
+            output = &std::cout;
+        }
+        else
+        {
+            output = &m_log_stream;
+        }
+        return;
+    }
+    //file not exists, create directory tree and file
+    std::filesystem::path dir = m_log_file_name;
+    std::filesystem::create_directories(dir.remove_filename());
+    m_log_stream.open(m_log_file_name, std::ios::app);
+    if (m_log_stream.fail())
+    {
+        m_log_stream.clear();
+        std::cerr << "Can't create log file\n";
+        std::cerr << "Output set to stdout\n";
+        m_log_file_name.clear();
+        output = &std::cout;
+    }
+}
+
+//initialize static variable of Logger
+std::atomic<Logger*> Logger::m_instance = nullptr;
+std::mutex Logger::m_instance_mtx;
 
 } //namespace ITAC::common
 

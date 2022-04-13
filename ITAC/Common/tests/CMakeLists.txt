@@ -1,13 +1,13 @@
-add_executable(Logger_test
+add_executable(common_test
         Logger_test.cpp
+        FS_test.cpp
 )
 
 target_link_libraries(
-        Logger_test
+        common_test
         gtest_main
         common_lib
 )
 
 include(GoogleTest)
-gtest_discover_tests(Logger_test)
-
+gtest_discover_tests(common_test)

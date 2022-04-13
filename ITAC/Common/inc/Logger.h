@@ -4,6 +4,7 @@
 
 #include <atomic>
 #include <filesystem>
+#include <fstream>
 #include <iostream>
 #include <mutex>
 #include <string>
@@ -32,8 +33,8 @@ public:
     static Logger *GetInstance();
 
     void SetLvl(LVL lvl);
-    bool SetOutput(std::ostream& out);
-    bool SetOutput(const std::filesystem::path& path);
+    void SetOutput(std::ostream& out);
+    void SetOutput(const std::filesystem::path& path);
 
     template<typename ...Args>
     void Log(LVL lvl, const std::string &func, unsigned line, Args... args)
@@ -45,14 +46,17 @@ public:
     }
 
 private:
-    std::filesystem::path logfile;
-    std::ostream* output = &std::cout;
+    std::filesystem::path m_log_file_name;
+    std::ofstream m_log_stream;
+    std::ostream *output = &std::cout;
     std::mutex m_out_mtx;
     LVL level = LVL::WRN;
     static std::atomic<Logger*> m_instance;
     static std::mutex m_instance_mtx;
 
 private:
+    Logger() = default;
+
     template<typename T>
     void InnerLog(T t)
     {
@@ -68,7 +72,9 @@ private:
 
     void InnerLogStartLine(LVL lvl, const std::string &func, unsigned line);
 
-    Logger();
+    void OpenLogFile();
+    void CloseLogFile();
+
 };
 /*
     std::filesystem::path log_dir = std::filesystem::current_path() / "log"_p;
@@ -77,10 +83,6 @@ private:
      */
     //поток вывода. Если файлб он должен быть открыт/закрыт
     //уровень логгирования
-
-//initialize static variable of Logger
-std::atomic<Logger*> Logger::m_instance = nullptr;
-std::mutex Logger::m_instance_mtx;
 
 #define TRC(...) Logger::GetInstance()->Log(Logger::LVL::TRC, __func__, __LINE__, __VA_ARGS__)
 #define DBG(...) Logger::GetInstance()->Log(Logger::LVL::DBG, __func__, __LINE__, __VA_ARGS__)
