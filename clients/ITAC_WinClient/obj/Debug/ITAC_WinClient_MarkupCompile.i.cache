@@ -4,15 +4,15 @@
 winexe
 C#
 .cs
-C:\andrew\work\ClientServer\clientWin\ITAC_WinClient\obj\Debug\
+C:\andrew\work\ClientServer\clients\ITAC_WinClient\obj\Debug\
 ITAC_WinClient
 none
 false
 DEBUG;TRACE
-C:\andrew\work\ClientServer\clientWin\ITAC_WinClient\App.xaml
+C:\andrew\work\ClientServer\clients\ITAC_WinClient\App.xaml
 3-1475173311
 
-8890900
+9-1534181303
 13-1749376338
 MainWindow.xaml;Option.xaml;WinWork.xaml;
 

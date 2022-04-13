@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\configurationStruct.cs" />
     <Compile Include="WinWork.xaml.cs">
       <DependentUpon>WinWork.xaml</DependentUpon>
     </Compile>

@@ -7,25 +7,35 @@
         mc:Ignorable="d"
         Title="ITAC Options" Height="500" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/Ресурс 3-8.png" Closed="WinOptions_Closed">
     <Grid>
-        <GroupBox x:Name="OptionsServer" Header=" Server " Margin="10,19,10,242" FontWeight="Bold" FontSize="14">
-            <Grid Height="195">
-                <TextBox x:Name="PathSetFile" HorizontalAlignment="Left" Margin="23,45,0,0" TextWrapping="Wrap" Text="c:\" VerticalAlignment="Top" Width="226" IsEnabled="False" Height="25"/>
-                <Button x:Name="BrowseButton" Content="Browse" HorizontalAlignment="Left" Margin="270,39,0,0" VerticalAlignment="Top" Height="35" Width="69" IsEnabled="False"/>
-                <TextBox x:Name="HostField" HorizontalAlignment="Left" Margin="76,115,0,0" TextWrapping="Wrap" Text="localhost" VerticalAlignment="Top" Width="263" Height="24" FontStyle="Italic" FontWeight="Normal"/>
-                <TextBox x:Name="PortField" HorizontalAlignment="Left" Margin="76,150,0,0" TextWrapping="Wrap" Text="8080" VerticalAlignment="Top" Width="48" Height="24" UndoLimit="5"/>
-                <RadioButton x:Name="SetFromFileRadioButton" Content="Setting from file" HorizontalAlignment="Left" Margin="16,13,0,0" VerticalAlignment="Top" IsChecked="True" Checked="SetFromFileRadioButton_Checked" FontWeight="Normal"/>
-                <RadioButton x:Name="ManualRadioButton" Content="Manual setting" HorizontalAlignment="Left" Margin="17,83,0,0" VerticalAlignment="Top" FontSize="14" Checked="ManualRadioButton_Checked" FontWeight="Normal"/>
-                <Label x:Name="HostLabel" Content="Host:" HorizontalAlignment="Left" Margin="23,112,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="PortLabel" Content="Port:" HorizontalAlignment="Left" Margin="23,146,0,0" VerticalAlignment="Top"/>
-                
-
-
+        <GroupBox x:Name="OptionsServer" Header=" Server " Margin="10,74,10,242" FontWeight="Bold" FontSize="14">
+            <Grid Height="134">
+                <TextBox x:Name="PathSetFile" HorizontalAlignment="Left" Margin="23,13,0,0" TextWrapping="Wrap" Text="c:\" VerticalAlignment="Top" Width="226" IsEnabled="False" Height="25"/>
+                <Button x:Name="BrowseButton" Content="Browse" HorizontalAlignment="Left" Margin="270,7,0,0" VerticalAlignment="Top" Height="35" Width="69" IsEnabled="False" Click="BrowseButton_Click"/>
+                <TextBox x:Name="HostField" HorizontalAlignment="Left" Margin="76,47,0,0" TextWrapping="Wrap" Text="localhost" VerticalAlignment="Top" Width="263" Height="24" FontStyle="Italic" FontWeight="Normal"/>
+                <TextBox x:Name="PortField" HorizontalAlignment="Left" Margin="76,86,0,0" TextWrapping="Wrap" Text="8080" VerticalAlignment="Top" Width="48" Height="24" MaxLength="5" PreviewTextInput="PortField_PreviewTextInput"/>
+                <Label x:Name="HostLabel" Content="Host:" HorizontalAlignment="Left" Margin="19,45,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="PortLabel" Content="Port:" HorizontalAlignment="Left" Margin="19,82,0,0" VerticalAlignment="Top" Height="28" RenderTransformOrigin="0.5,0.5">
+                    <Label.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleY="1"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Label.RenderTransform>
+                </Label>
             </Grid>
         </GroupBox>
-        <GroupBox x:Name="OptionsClient" Header=" Client " Margin="10,259,10,20" FontSize="14" FontWeight="Bold" IsEnabled="False">
-            <Grid/>
+        <GroupBox x:Name="OptionsClient" Header=" Client " Margin="10,248,10,90" FontSize="14" FontWeight="Bold" IsEnabled="False">
+            <Grid Margin="0,0,0,23">
+                <Label x:Name="HistoryLabel" Content="дней хранить историю." HorizontalAlignment="Left" Margin="184,7,0,0" VerticalAlignment="Top" FontWeight="Normal"/>
+                <TextBox x:Name="HistoryDayStorage" HorizontalAlignment="Left" Margin="10,13,0,0" TextWrapping="Wrap" TextAlignment="Right" Text="30" VerticalAlignment="Top" Width="154" MaxLength="5" PreviewTextInput="HistoryDayStorage_PreviewTextInput"/>
+            </Grid>
         </GroupBox>
         <Expander HorizontalAlignment="Left" Height="100" Header="Expander" Margin="505,149,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button Content="Save settings" HorizontalAlignment="Center" Margin="0,405,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="350" Height="40" FontSize="14"/>
+        <RadioButton x:Name="FromFileRadio" Content="Config from file" HorizontalAlignment="Left" Margin="25,29,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" IsChecked="True" Checked="FromFileRadio_Checked"/>
+        <RadioButton x:Name="ManualRadio" Content="Manual configuration" HorizontalAlignment="Left" Margin="199,29,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" Checked="ManualRadio_Checked"/>
 
     </Grid>
 </Window>

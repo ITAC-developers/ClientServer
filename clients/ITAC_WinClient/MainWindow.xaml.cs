@@ -13,6 +13,8 @@ using System.Windows.Media.TextFormatting;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ITAC_WinClient.Models;
+
 
 namespace ITAC_WinClient
 {
@@ -21,11 +23,12 @@ namespace ITAC_WinClient
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         private string MsgDesc = "Server connected.";
-        //private bool isConnected = false;
         public bool isConnected { get; set; }
         public bool isAutorizated { get; set; }
 
+        ConfigurationStruct configurationStruct = new ConfigurationStruct();
         public MainWindow()
         {
             isConnected = true;
