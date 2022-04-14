@@ -14,12 +14,16 @@
 namespace ITAC::common
 {
 
+void ostream_callback(std::ios::event ev, std::ios_base& stream, int index);
+
 //TODO close file in destructor
 //Test:
-//1 - GetInstance()
-//2 - SetLvl()
-//3 - SetOutput()
-//4 - Log()
+//1 - Test GetInstance() - DONE
+//2 - Test SetLvl()
+//3 - Test SetOutput()
+//4 - Test Log() - DONE
+//5 - Add function SetSplitter that split output arguments with given string
+//6 - Test SetSplitter
 
 class Logger {
 public:
@@ -43,11 +47,12 @@ public:
     void SetOutput(std::ostream& out);
     void SetOutput(const std::filesystem::path& path);
     std::string GetOutput();
+    LVL GetLvl();
 
     template<typename ...Args>
     void Log(LVL lvl, const std::string &func, unsigned line, Args... args)
     {
-        if (lvl < level) return;
+        if (lvl < m_level) return;
         std::scoped_lock lock(m_out_mtx);
         InnerLogStartLine(lvl, func, line);
         InnerLog(args...);
@@ -56,25 +61,27 @@ public:
 private:
     std::filesystem::path m_log_file_name;
     std::ofstream m_log_stream;
-    std::ostream *output = &std::cout;
+    std::ostream *m_output = &std::cout;
     std::mutex m_out_mtx;
-    LVL level = LVL::WRN;
+    LVL m_level = LVL::WRN;
     static std::atomic<Logger*> m_instance;
     static std::mutex m_instance_mtx;
 
 private:
     Logger() = default;
 
+    void CheckOutput();
+
     template<typename T>
     void InnerLog(T t)
     {
-        *output << t << std::endl;
+        *m_output << t << std::endl;
     }
 
     template<typename T, typename ...Args>
     void InnerLog(T t, Args... args)
     {
-        *output << t;
+        *m_output << t;
         InnerLog(args...);
     }
 
@@ -84,19 +91,15 @@ private:
     void CloseLogFile();
 
 };
-/*
-    std::filesystem::path log_dir = std::filesystem::current_path() / "log"_p;
-    std::filesystem::path file_name = "dbg.log"_p;
-    std::ostream &output;
-     */
-    //поток вывода. Если файлб он должен быть открыт/закрыт
-    //уровень логгирования
-
-#define TRC(...) Logger::GetInstance()->Log(Logger::LVL::TRC, __func__, __LINE__, __VA_ARGS__)
-#define DBG(...) Logger::GetInstance()->Log(Logger::LVL::DBG, __func__, __LINE__, __VA_ARGS__)
-#define INF(...) Logger::GetInstance()->Log(Logger::LVL::INF, __func__, __LINE__, __VA_ARGS__)
-#define WRN(...) Logger::GetInstance()->Log(Logger::LVL::WRN, __func__, __LINE__, __VA_ARGS__)
-#define ERR(...) Logger::GetInstance()->Log(Logger::LVL::ERR, __func__, __LINE__, __VA_ARGS__)
 
 } // namespace ITAC::common
+
+namespace ITAC
+{
+#define TRC(...) common::Logger::GetInstance()->Log(ITAC::common::Logger::LVL::TRC, __func__, __LINE__, __VA_ARGS__)
+#define DBG(...) common::Logger::GetInstance()->Log(ITAC::common::Logger::LVL::DBG, __func__, __LINE__, __VA_ARGS__)
+#define INF(...) common::Logger::GetInstance()->Log(ITAC::common::Logger::LVL::INF, __func__, __LINE__, __VA_ARGS__)
+#define WRN(...) common::Logger::GetInstance()->Log(ITAC::common::Logger::LVL::WRN, __func__, __LINE__, __VA_ARGS__)
+#define ERR(...) common::Logger::GetInstance()->Log(ITAC::common::Logger::LVL::ERR, __func__, __LINE__, __VA_ARGS__)
+}
 
