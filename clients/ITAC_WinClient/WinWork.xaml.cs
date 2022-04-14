@@ -26,9 +26,7 @@ namespace ITAC_WinClient
 
         private void WindowMessenger_Closed(object sender, EventArgs e)
         {
-            //MainWindow mainWindow = new MainWindow();
             this.Owner.Show();
-            //mainWindow.Show();
         }
     }
 }

@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ITAC_WinClient.Models;
 
 namespace ITAC_WinClient
 {
@@ -21,24 +22,33 @@ namespace ITAC_WinClient
     public partial class Option : Window
     {
         //func validate dugit in fields
-        
+
         private void ValidateIsNumeric(TextCompositionEventArgs e)
         {
             int result;
-            
+
             if (!(int.TryParse(e.Text, out result)))
             {
                 e.Handled = true;
             }
         }
+        
+        public ConfigurationStruct ConfigClient;
+
         public Option()
-        {   
+        {
+            //PathSetFile.Text = ConfigClient.pathFile;
+            HostField.Text = ConfigClient.host;
+            PortField.Text = ConfigClient.port;
+
+
             InitializeComponent();
         }
+        
 
         private void WinOptions_Closed(object sender, EventArgs e)
         {
-           // this.Owner.Show();
+            // this.Owner.Show();
         }
 
         private void SetFromFileRadioButton_Checked(object sender, RoutedEventArgs e)
@@ -69,9 +79,9 @@ namespace ITAC_WinClient
         private void FromFileRadio_Checked(object sender, RoutedEventArgs e)
         {
             PathSetFile.IsEnabled = true;
-            BrowseButton.IsEnabled=true;
+            BrowseButton.IsEnabled = true;
             HostField.IsEnabled = false;
-            PortField.IsEnabled=false;
+            PortField.IsEnabled = false;
             OptionsClient.IsEnabled = false;
         }
 
@@ -92,6 +102,11 @@ namespace ITAC_WinClient
         private void PortField_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             ValidateIsNumeric(e);
+        }
+
+        private void SaveSettingButton_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

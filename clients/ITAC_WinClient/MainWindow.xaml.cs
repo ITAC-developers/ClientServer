@@ -27,8 +27,8 @@ namespace ITAC_WinClient
         private string MsgDesc = "Server connected.";
         public bool isConnected { get; set; }
         public bool isAutorizated { get; set; }
+        public ConfigurationStruct configurationStruct;
 
-        ConfigurationStruct configurationStruct = new ConfigurationStruct();
         public MainWindow()
         {
             isConnected = true;
@@ -36,6 +36,10 @@ namespace ITAC_WinClient
 
             if (!isConnected)
                 MsgDesc = "Server not found.";
+
+            configurationStruct.host = "127.0.0.1";
+            configurationStruct.port = "8089";
+
            
             InitializeComponent();
         }
@@ -140,8 +144,8 @@ namespace ITAC_WinClient
         private void OptionItem_Click(object sender, RoutedEventArgs e)
         {
             Option optionWindow = new Option();
-            // this.Hide();
             optionWindow.Owner = this;
+            optionWindow.ConfigClient = configurationStruct;
             optionWindow.Show();
         }
     }
