@@ -1,5 +1,7 @@
 #include <Logger.h>
 
+#include <regex>
+
 namespace ITAC::common
 {
 
@@ -132,6 +134,28 @@ void Logger::OpenLogFile()
 //initialize static variable of Logger
 std::atomic<Logger*> Logger::m_instance = nullptr;
 std::mutex Logger::m_instance_mtx;
+
+LogLine ParseLogLine(const std::string &line) {
+    static std::regex log_regex(R"/(^\[([\d\w :\/]*)\] \[\s*([^\s]*)\s*\] {(\w*): (\d*)} (\N)*$)/");
+    std::smatch matched;
+    LogLine result;
+    if (std::regex_match(line, matched, log_regex))
+    {
+        result.date = matched[1];
+        result.level = matched[2];
+        result.func = matched[3];
+        try {
+            result.line = std::stoul(matched[4]);
+        } catch (std::invalid_argument& ex) {
+            result.line = 0;
+        } catch (std::out_of_range& ex) {
+            result.line = 0;
+        }
+        result.content = matched[5];
+    }
+    return result;
+}
+
 
 } //namespace ITAC::common
 

@@ -92,6 +92,16 @@ private:
 
 };
 
+struct LogLine {
+    std::string date;
+    std::string level;
+    std::string func;
+    std::string content;
+    unsigned line;
+};
+
+LogLine ParseLogLine(const std::string &line);
+
 } // namespace ITAC::common
 
 namespace ITAC
