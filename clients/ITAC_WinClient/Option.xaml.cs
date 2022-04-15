@@ -37,11 +37,6 @@ namespace ITAC_WinClient
 
         public Option()
         {
-            //PathSetFile.Text = ConfigClient.pathFile;
-            HostField.Text = ConfigClient.host;
-            PortField.Text = ConfigClient.port;
-
-
             InitializeComponent();
         }
         
@@ -106,7 +101,11 @@ namespace ITAC_WinClient
 
         private void SaveSettingButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            ConfigClient.nameConfig = "config.ifc";
+            HostField.Text = ConfigClient.host;
+            PortField.Text = ConfigClient.port;
+            ConfigClient.host = HostField.Text;
+
         }
     }
 }
