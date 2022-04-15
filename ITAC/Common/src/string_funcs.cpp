@@ -1,5 +1,6 @@
 #include <string_funcs.h>
-#include <algorithm>
+
+#include <algorithm> //find_if
 
 namespace ITAC::common {
 
@@ -23,4 +24,20 @@ std::string &trim(std::string &s) {
     return ltrim(rtrim(s));
 }
 
+std::vector<std::string_view> Split(std::string_view sv, std::string_view splitters) {
+    std::vector<std::string_view> result;
+    if (sv.empty()) return {};
+    if (splitters.empty()) return {sv};
+    while (sv.size() > 0) {
+        auto pos = sv.find_first_of(splitters);
+        result.push_back(sv.substr(0, pos));
+        if (pos == std::string_view::npos) {
+            break;
+        }
+        sv.remove_prefix(pos + 1);
+    }
+    return result;
+}
+
 } //namespace ITAC::common
+
