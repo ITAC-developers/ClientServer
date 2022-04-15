@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
 
 #include <Logger.h>
-#include <FS.h>
 
 #include <sstream>
 #include <string>
@@ -29,9 +28,19 @@ std::vector<LogLineStruct> ParseLogFile(const std::filesystem::path& file)
     std::string line;
     while(std::getline(log, line))
     {
+        /*
         LogLineStruct lineStruct;
-        //TODO parse line. May be use string_view for this
+        auto end_time = line.find("]");
+        lineStruct.time = line.substr(1, end_time - 1);
+        auto start_lvl = line.find("[", end_time);
+        auto end_lvl = line.find("]", start_lvl);
+        lineStruct.level = line.substr(start_lvl, end_lvl - start_lvl);
+        auto &ls = lineStruct.level;
+        auto func_start = line.find("{");
+        auto func_end = line.find(":", func_start);
+        */
     }
+    return {};
 }
 
 TEST(Logger, GetInstance)
