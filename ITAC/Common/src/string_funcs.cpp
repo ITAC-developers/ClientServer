@@ -24,7 +24,7 @@ std::string &trim(std::string &s) {
     return ltrim(rtrim(s));
 }
 
-std::vector<std::string_view> Split(std::string_view sv, std::string_view splitters) {
+std::vector<std::string_view> Split(std::string_view sv, const std::string &splitters) {
     std::vector<std::string_view> result;
     if (sv.empty()) return {};
     if (splitters.empty()) return {sv};
