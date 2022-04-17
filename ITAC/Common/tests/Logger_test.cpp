@@ -40,6 +40,27 @@ TEST(Logger, LogMacro) {
     ITAC::INF("info");
     ITAC::WRN("warning");
     ITAC::ERR("error");
+    auto t = ITAC::common::ParseLogLines(log_output.str());
+
+    ASSERT_EQ(t.size(), 5U);
+
+    EXPECT_STREQ(t[0].level.c_str(), "TRACE");
+    EXPECT_STREQ(t[1].level.c_str(), "DEBUG");
+    EXPECT_STREQ(t[2].level.c_str(), "INFO");
+    EXPECT_STREQ(t[3].level.c_str(), "WARNING");
+    EXPECT_STREQ(t[4].level.c_str(), "ERROR");
+
+    EXPECT_STREQ(t[0].content.c_str(), "trace");
+    EXPECT_STREQ(t[1].content.c_str(), "debug");
+    EXPECT_STREQ(t[2].content.c_str(), "info");
+    EXPECT_STREQ(t[3].content.c_str(), "warning");
+    EXPECT_STREQ(t[4].content.c_str(), "error");
+
+    for (int i = 0; i < 5; ++i)
+    {
+        EXPECT_STREQ(t[i].func.c_str(), "TestBody");
+        EXPECT_EQ(t[i].line, i + 38);
+    }
 }
 
 TEST(Logger, SetLvl) {
