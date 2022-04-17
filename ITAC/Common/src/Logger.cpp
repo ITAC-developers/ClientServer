@@ -2,6 +2,8 @@
 
 #include <regex>
 
+#include <string_funcs.h>
+
 namespace ITAC::common
 {
 
@@ -62,7 +64,7 @@ std::string Logger::GetOutput()
     using namespace std::string_literals;
     if (m_log_file_name.empty())
     {
-        return "cout"s;
+        return m_output == &std::cout ? "std::cout"s : "std::ostream"s;
     }
     std::stringstream result;
     result << m_log_file_name.c_str();
@@ -83,6 +85,12 @@ std::ostream& operator<<(std::ostream& out, Logger::LVL lvl)
         case Logger::LVL::ERR: out << " ERROR "s; break;
     }
     return out;
+}
+
+Logger::~Logger() {
+    if (!m_log_file_name.empty()) {
+        m_log_stream.close();
+    }
 }
 
 void Logger::InnerLogStartLine(LVL lvl, const std::string &func, unsigned line)
@@ -135,23 +143,24 @@ void Logger::OpenLogFile()
 std::atomic<Logger*> Logger::m_instance = nullptr;
 std::mutex Logger::m_instance_mtx;
 
-LogLine ParseLogLine(const std::string &line) {
-    static std::regex log_regex(R"/(^\[([\d\w :\/]*)\] \[\s*([^\s]*)\s*\] {(\w*): (\d*)} (\N)*$)/");
+std::vector<LogLine> ParseLogLines(const std::string &lines) {
+    static std::regex log_regex(R"/(\[([\d\w :\/]*)\] \[\s*([^\s]*)\s*\] \{(\w*): (\d*)} (.*))/");
     std::smatch matched;
-    LogLine result;
-    if (std::regex_match(line, matched, log_regex))
+    LogLine log_line;
+    std::vector<LogLine> result;
+    auto lines_arr = ITAC::common::Split(lines, "\n");
+
+    for (auto &line : lines_arr)
     {
-        result.date = matched[1];
-        result.level = matched[2];
-        result.func = matched[3];
-        try {
-            result.line = std::stoul(matched[4]);
-        } catch (std::invalid_argument& ex) {
-            result.line = 0;
-        } catch (std::out_of_range& ex) {
-            result.line = 0;
-        }
-        result.content = matched[5];
+        std::string str(line); //TODO don't create temporary string
+        bool s = std::regex_match(str, matched, log_regex);
+        if (!s) continue;
+        log_line.date = matched[1];
+        log_line.level = matched[2];
+        log_line.func = matched[3];
+        log_line.line = std::stoul(matched[4]);
+        log_line.content = matched[5];
+        result.push_back(log_line);
     }
     return result;
 }
