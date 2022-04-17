@@ -34,6 +34,6 @@ std::string& trim(std::string& s);
  * @param splitters  Set of characters
  * @return           Vector of strings_view after split string
  */
-std::vector<std::string_view> Split(std::string_view sv, std::string_view splitters);
+std::vector<std::string_view> Split(std::string_view sv, const std::string &splitters);
 
 } //namespace ITAC::common
