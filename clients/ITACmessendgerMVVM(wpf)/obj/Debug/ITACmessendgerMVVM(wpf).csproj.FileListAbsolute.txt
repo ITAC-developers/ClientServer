@@ -1,0 +1,15 @@
+V:\ITAC\ClientServer\clients\ITACmessendgerMVVM(wpf)\bin\Debug\ITACmessendgerMVVM(wpf).exe.config
+V:\ITAC\ClientServer\clients\ITACmessendgerMVVM(wpf)\bin\Debug\ITACmessendgerMVVM(wpf).exe
+V:\ITAC\ClientServer\clients\ITACmessendgerMVVM(wpf)\bin\Debug\ITACmessendgerMVVM(wpf).pdb
+V:\ITAC\ClientServer\clients\ITACmessendgerMVVM(wpf)\obj\Debug\ITACmessendgerMVVM(wpf).csproj.AssemblyReference.cache
+V:\ITAC\ClientServer\clients\ITACmessendgerMVVM(wpf)\obj\Debug\App.g.cs
+V:\ITAC\ClientServer\clients\ITACmessendgerMVVM(wpf)\obj\Debug\ITACmessendgerMVVM(wpf)_MarkupCompile.cache
+V:\ITAC\ClientServer\clients\ITACmessendgerMVVM(wpf)\obj\Debug\ITACmessendgerMVVM(wpf)_MarkupCompile.lref
+V:\ITAC\ClientServer\clients\ITACmessendgerMVVM(wpf)\obj\Debug\ITACmessendgerMVVM(wpf).g.resources
+V:\ITAC\ClientServer\clients\ITACmessendgerMVVM(wpf)\obj\Debug\ITACmessendgerMVVM_wpf_.Properties.Resources.resources
+V:\ITAC\ClientServer\clients\ITACmessendgerMVVM(wpf)\obj\Debug\ITACmessendgerMVVM(wpf).csproj.GenerateResource.cache
+V:\ITAC\ClientServer\clients\ITACmessendgerMVVM(wpf)\obj\Debug\ITACmessendgerMVVM(wpf).csproj.CoreCompileInputs.cache
+V:\ITAC\ClientServer\clients\ITACmessendgerMVVM(wpf)\obj\Debug\ITACmessendgerMVVM(wpf).exe
+V:\ITAC\ClientServer\clients\ITACmessendgerMVVM(wpf)\obj\Debug\ITACmessendgerMVVM(wpf).pdb
+V:\ITAC\ClientServer\clients\ITACmessendgerMVVM(wpf)\obj\Debug\Views\MainWindow.g.cs
+V:\ITAC\ClientServer\clients\ITACmessendgerMVVM(wpf)\obj\Debug\Views\MainWindow.baml
