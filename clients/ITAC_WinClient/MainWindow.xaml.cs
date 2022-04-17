@@ -145,7 +145,6 @@ namespace ITAC_WinClient
         {
             Option optionWindow = new Option();
             optionWindow.Owner = this;
-            optionWindow.ConfigClient = configurationStruct;
             optionWindow.Show();
         }
     }
