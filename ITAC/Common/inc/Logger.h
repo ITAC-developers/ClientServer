@@ -27,9 +27,8 @@ void ostream_callback(std::ios::event ev, std::ios_base& stream, int index);
 //Test:
 //2 - Test SetLvl()
 //3 - Test SetOutput()
-//5 - Add function SetSplitter that split output arguments with given string
-//6 - Test SetSplitter
 //7 - Test PraseLogLine
+//8 - TODO do somthing with callback
 
 
 /**
@@ -111,8 +110,7 @@ public:
      * @param args  Any printable args, that will be concat to message
      */
     template<typename ...Args>
-    void Log(LVL lvl, const std::string &func, unsigned line, Args... args)
-    {
+    void Log(LVL lvl, const std::string &func, unsigned line, Args... args) {
         if (lvl < m_level) return;
         std::scoped_lock lock(m_out_mtx);
         InnerLogStartLine(lvl, func, line);
@@ -134,15 +132,13 @@ private:
 
     /** This function needed when template args have only one value */
     template<typename T>
-    void InnerLog(T t)
-    {
+    void InnerLog(T t) {
         *m_output << t << std::endl;
     }
 
     /** Recursive function for any count of args */
     template<typename T, typename ...Args>
-    void InnerLog(T t, Args... args)
-    {
+    void InnerLog(T t, Args... args) {
         *m_output << t;
         InnerLog(args...);
     }
