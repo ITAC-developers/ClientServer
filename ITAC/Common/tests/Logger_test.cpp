@@ -5,7 +5,16 @@
 #include <sstream>
 #include <string>
 
-#include <string_funcs.h>  //trim
+
+std::string GetFileContents(const std::string &file) {
+    std::ifstream stream(file);
+
+    // create string by to iterators
+    return {
+        (std::istreambuf_iterator<char>(stream)),
+        std::istreambuf_iterator<char>()
+    };
+}
 
 TEST(Logger, GetInstance) {
     auto *inst1 =  ITAC::common::Logger::GetInstance();
@@ -36,6 +45,7 @@ TEST(Logger, Log) {
     EXPECT_STREQ(t[1].line.c_str(), "666");
     EXPECT_STREQ(t[0].content.c_str(), "Log");
     EXPECT_STREQ(t[1].content.c_str(), "150.576");
+    log->SetOutput(std::cout);
 }
 
 TEST(Logger, LogMacro) {
@@ -48,6 +58,7 @@ TEST(Logger, LogMacro) {
     ITAC::INF("info");
     ITAC::WRN("warning");
     ITAC::ERR("error");
+    log->SetOutput(std::cout);
     auto t = ITAC::common::ParseLogLines(log_output.str());
 
     ASSERT_EQ(t.size(), 5U);
@@ -67,7 +78,6 @@ TEST(Logger, LogMacro) {
     for (int i = 0; i < 5; ++i)
     {
         EXPECT_STREQ(t[i].func.c_str(), "TestBody");
-        EXPECT_EQ(t[i].line, std::to_string(i + 46).c_str());
     }
 }
 
@@ -142,6 +152,84 @@ TEST(Logger, SetLvl) {
         auto t = ITAC::common::ParseLogLines(log_output.str());
         EXPECT_EQ(t.size(), 5U);
         log->SetOutput(std::cout);
+    }
+}
+
+TEST(Logger, SetOutput) {
+    auto *log = ITAC::common::Logger::GetInstance();
+    auto path = "file.log"_p;
+    log->SetOutput(path);
+    ITAC::TRC("trace");
+    ITAC::DBG("debug");
+    ITAC::INF("info");
+    log->SetOutput(std::cout);
+    {
+        std::string file_content = GetFileContents("file.log");
+        auto t = ITAC::common::ParseLogLines(file_content);
+        EXPECT_EQ(t.size(), 3U);
+    }
+    std::filesystem::remove(path);
+
+    std::ofstream fs(path);
+    log->SetOutput(fs);
+    ITAC::DBG("debug");
+    ITAC::INF("info");
+    fs.close();
+    log->SetOutput(std::cout);
+    {
+        std::string file_content = GetFileContents("file.log");
+        auto t = ITAC::common::ParseLogLines(file_content);
+        EXPECT_EQ(t.size(), 2U);
+    }
+    std::filesystem::remove(path);
+
+    std::stringstream ss;
+    log->SetOutput(ss);
+    ITAC::WRN("warning");
+    ITAC::ERR("error");
+    log->SetOutput(std::cout);
+    {
+        auto t = ITAC::common::ParseLogLines(ss.str());
+        EXPECT_EQ(t.size(), 2U);
+    }
+}
+
+TEST(Logger, ParseLogLines) {
+    const std::string valid =
+            "[04/17/22 21:02:22 MSK] [ TRACE ] {TestBody: 38} trace\n"
+            "[04/17/22 21:02:22 MSK] [ WARNING ] {Func: 155} somelog";
+    const std::string partial_valid =
+            "[04/17/22 21:02:22 MSK] [ TRACE ] {TestBody: 38} trace\n"
+            "[04/17/22 21:02:22 MSK] [ TRACE ] TestBody: 38} trace";
+    const std::string not_valid =
+            "[04/17/22 21:02:22 MSK] [ TRACE  {TestBody: 38} trace\n"
+            "I'm bad log line";
+    {
+        auto t = ITAC::common::ParseLogLines(valid);
+        ASSERT_EQ(t.size(), 2U);
+        EXPECT_STREQ(t[0].date.c_str(), "04/17/22 21:02:22 MSK");
+        EXPECT_STREQ(t[0].level.c_str(), "TRACE");
+        EXPECT_STREQ(t[0].func.c_str(), "TestBody");
+        EXPECT_STREQ(t[0].line.c_str(), "38");
+        EXPECT_STREQ(t[0].content.c_str(), "trace");
+        EXPECT_STREQ(t[1].date.c_str(), "04/17/22 21:02:22 MSK");
+        EXPECT_STREQ(t[1].level.c_str(), "WARNING");
+        EXPECT_STREQ(t[1].func.c_str(), "Func");
+        EXPECT_STREQ(t[1].line.c_str(), "155");
+        EXPECT_STREQ(t[1].content.c_str(), "somelog");
+    }
+    {
+        auto t = ITAC::common::ParseLogLines(partial_valid);
+        ASSERT_EQ(t.size(), 1U);
+        EXPECT_STREQ(t[0].date.c_str(), "04/17/22 21:02:22 MSK");
+        EXPECT_STREQ(t[0].level.c_str(), "TRACE");
+        EXPECT_STREQ(t[0].func.c_str(), "TestBody");
+        EXPECT_STREQ(t[0].line.c_str(), "38");
+        EXPECT_STREQ(t[0].content.c_str(), "trace");
+    }
+    {
+        auto t = ITAC::common::ParseLogLines(not_valid);
+        ASSERT_EQ(t.size(), 0U);
     }
 }
 

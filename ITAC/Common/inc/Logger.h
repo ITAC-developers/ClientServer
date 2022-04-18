@@ -24,13 +24,6 @@ namespace ITAC::common
  */
 void ostream_callback(std::ios::event ev, std::ios_base& stream, int index);
 
-//Test:
-//2 - Test SetLvl()
-//3 - Test SetOutput()
-//7 - Test PraseLogLine
-//8 - TODO do somthing with callback
-
-
 /**
  * Class loger provide easy way to centralization logging
  * It's a thread-safe singelton class
@@ -89,6 +82,12 @@ public:
      * @return std::cout" || "std::stream" || output file name
      */
     std::string GetOutput();
+
+    /**
+     * @brief Get pointer to the current ouput
+     * @return std::ostream pointer
+     */
+    std::ostream *GetOutputPtr();
 
     /**
      * @brief Get current output level

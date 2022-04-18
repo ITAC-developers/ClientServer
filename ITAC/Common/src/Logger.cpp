@@ -8,10 +8,11 @@ namespace ITAC::common
 {
 
 void ostream_callback(std::ios::event ev, std::ios_base& stream, [[maybe_unused]] int index) {
-    if (ev == stream.erase_event) {
-        Logger::GetInstance()->SetOutput(std::cout);
-        Logger::GetInstance()->Log(Logger::LVL::INF, __func__, __LINE__,
-                                   "Output stream destroy, set std::cout as output");
+    auto *logger = Logger::GetInstance();
+    if (ev == stream.erase_event && &stream == logger->GetOutputPtr()) {
+        logger->SetOutput(std::cout);
+        logger->Log(Logger::LVL::INF, __func__, __LINE__,
+                    "Output stream destroy, set std::cout as output");
     }
 }
 
@@ -60,6 +61,10 @@ std::string Logger::GetOutput() {
     std::stringstream result;
     result << m_log_file_name.c_str();
     return result.str();
+}
+
+std::ostream *Logger::GetOutputPtr() {
+    return m_output;
 }
 
 Logger::LVL Logger::GetLvl() { return m_level; }
@@ -133,10 +138,8 @@ std::vector<LogLine> ParseLogLines(const std::string &lines) {
     for (std::sregex_iterator i = match_begin; i != match_end; ++i) {
         result.emplace_back((*i)[1], (*i)[2], (*i)[3], (*i)[4], (*i)[5]);
     }
-
     return result;
 }
-
 
 } //namespace ITAC::common
 
