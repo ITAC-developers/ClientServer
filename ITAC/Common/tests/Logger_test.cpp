@@ -27,7 +27,15 @@ TEST(Logger, Log) {
     log->Log(lvl, "function_name", 666, "Log");
     log->Log(lvl, "function_name", 666, 15, .5f, 76ULL);
 
-    EXPECT_STREQ(log_output.str().c_str(), "asdf");
+    auto t = ITAC::common::ParseLogLines(log_output.str());
+    EXPECT_STREQ(t[0].level.c_str(), "ERROR");
+    EXPECT_STREQ(t[1].level.c_str(), "ERROR");
+    EXPECT_STREQ(t[0].func.c_str(), "function_name");
+    EXPECT_STREQ(t[1].func.c_str(), "function_name");
+    EXPECT_STREQ(t[0].line.c_str(), "666");
+    EXPECT_STREQ(t[1].line.c_str(), "666");
+    EXPECT_STREQ(t[0].content.c_str(), "Log");
+    EXPECT_STREQ(t[1].content.c_str(), "150.576");
 }
 
 TEST(Logger, LogMacro) {
@@ -59,7 +67,7 @@ TEST(Logger, LogMacro) {
     for (int i = 0; i < 5; ++i)
     {
         EXPECT_STREQ(t[i].func.c_str(), "TestBody");
-        EXPECT_EQ(t[i].line, i + 38);
+        EXPECT_EQ(t[i].line, std::to_string(i + 46).c_str());
     }
 }
 

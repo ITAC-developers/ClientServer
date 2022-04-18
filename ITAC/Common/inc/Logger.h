@@ -8,6 +8,7 @@
 #include <iostream>
 #include <mutex>
 #include <string>
+#include <utility> //move
 #include <vector>
 
 #include <own_literals.h>
@@ -153,11 +154,19 @@ private:
 };
 
 struct LogLine {
+    LogLine() = default;
+    LogLine(std::string d, std::string l, std::string f, std::string li, std::string c)
+        : date(std::move(d))
+        , level(std::move(l))
+        , func(std::move(f))
+        , line(std::move(li))
+        , content(std::move(c))
+    {}
     std::string date;
     std::string level;
     std::string func;
+    std::string line;
     std::string content;
-    unsigned line;
 };
 
 /**

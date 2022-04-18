@@ -145,23 +145,16 @@ std::mutex Logger::m_instance_mtx;
 
 std::vector<LogLine> ParseLogLines(const std::string &lines) {
     static std::regex log_regex(R"/(\[([\d\w :\/]*)\] \[\s*([^\s]*)\s*\] \{(\w*): (\d*)} (.*))/");
-    std::smatch matched;
-    LogLine log_line;
     std::vector<LogLine> result;
-    auto lines_arr = ITAC::common::Split(lines, "\n");
 
-    for (auto &line : lines_arr)
+    auto match_begin = std::sregex_iterator(lines.begin(), lines.end(), log_regex);
+    auto match_end = std::sregex_iterator();
+
+    for (std::sregex_iterator i = match_begin; i != match_end; ++i)
     {
-        std::string str(line); //TODO don't create temporary string
-        bool s = std::regex_match(str, matched, log_regex);
-        if (!s) continue;
-        log_line.date = matched[1];
-        log_line.level = matched[2];
-        log_line.func = matched[3];
-        log_line.line = std::stoul(matched[4]);
-        log_line.content = matched[5];
-        result.push_back(log_line);
+        result.emplace_back((*i)[1], (*i)[2], (*i)[3], (*i)[4], (*i)[5]);
     }
+
     return result;
 }
 
