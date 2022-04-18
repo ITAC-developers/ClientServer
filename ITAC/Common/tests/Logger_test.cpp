@@ -72,8 +72,76 @@ TEST(Logger, LogMacro) {
 }
 
 TEST(Logger, SetLvl) {
-    { //Test err lvl, just one line must be created
-        ITAC::DBG("a");
+    auto *log = ITAC::common::Logger::GetInstance();
+    {
+        std::stringstream log_output;
+        log->SetOutput(log_output);
+        log->SetLvl(ITAC::common::Logger::LVL::ERR);
+        ITAC::TRC("trace");
+        ITAC::DBG("debug");
+        ITAC::INF("info");
+        ITAC::WRN("warning");
+        ITAC::ERR("error");
+
+        auto t = ITAC::common::ParseLogLines(log_output.str());
+        EXPECT_EQ(t.size(), 1U);
+        log->SetOutput(std::cout);
+    }
+    {
+        std::stringstream log_output;
+        log->SetOutput(log_output);
+        log->SetLvl(ITAC::common::Logger::LVL::WRN);
+        ITAC::TRC("trace");
+        ITAC::DBG("debug");
+        ITAC::INF("info");
+        ITAC::WRN("warning");
+        ITAC::ERR("error");
+
+        auto t = ITAC::common::ParseLogLines(log_output.str());
+        EXPECT_EQ(t.size(), 2U);
+        log->SetOutput(std::cout);
+    }
+    {
+        std::stringstream log_output;
+        log->SetOutput(log_output);
+        log->SetLvl(ITAC::common::Logger::LVL::INF);
+        ITAC::TRC("trace");
+        ITAC::DBG("debug");
+        ITAC::INF("info");
+        ITAC::WRN("warning");
+        ITAC::ERR("error");
+
+        auto t = ITAC::common::ParseLogLines(log_output.str());
+        EXPECT_EQ(t.size(), 3U);
+        log->SetOutput(std::cout);
+    }
+    {
+        std::stringstream log_output;
+        log->SetOutput(log_output);
+        log->SetLvl(ITAC::common::Logger::LVL::DBG);
+        ITAC::TRC("trace");
+        ITAC::DBG("debug");
+        ITAC::INF("info");
+        ITAC::WRN("warning");
+        ITAC::ERR("error");
+
+        auto t = ITAC::common::ParseLogLines(log_output.str());
+        EXPECT_EQ(t.size(), 4U);
+        log->SetOutput(std::cout);
+    }
+    {
+        std::stringstream log_output;
+        log->SetOutput(log_output);
+        log->SetLvl(ITAC::common::Logger::LVL::TRC);
+        ITAC::TRC("trace");
+        ITAC::DBG("debug");
+        ITAC::INF("info");
+        ITAC::WRN("warning");
+        ITAC::ERR("error");
+
+        auto t = ITAC::common::ParseLogLines(log_output.str());
+        EXPECT_EQ(t.size(), 5U);
+        log->SetOutput(std::cout);
     }
 }
 
