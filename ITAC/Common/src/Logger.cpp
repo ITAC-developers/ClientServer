@@ -4,6 +4,8 @@
 
 #include <string_funcs.h>
 
+using namespace std::literals;
+
 namespace ITAC::common
 {
 
@@ -36,13 +38,11 @@ void Logger::SetLvl(LVL lvl) {
 
 void Logger::SetOutput(std::ostream& out) {
     std::scoped_lock lock(m_out_mtx);
+    CloseLogFile();
     if (&out != &std::cout) {
         out.register_callback(ostream_callback, 0);
-    } else {
-
     }
     m_output = &out;
-    CloseLogFile();
 }
 
 void Logger::SetOutput(const std::filesystem::path &path) {
@@ -69,18 +69,6 @@ std::ostream *Logger::GetOutputPtr() {
 
 Logger::LVL Logger::GetLvl() { return m_level; }
 
-std::ostream& operator<<(std::ostream& out, Logger::LVL lvl) {
-    using namespace std::string_literals;
-    switch(lvl) {
-        case Logger::LVL::TRC: out << " TRACE "s; break;
-        case Logger::LVL::DBG: out << " DEBUG "s; break;
-        case Logger::LVL::INF: out << " INFO  "s; break;
-        case Logger::LVL::WRN: out << "WARNING"s; break;
-        case Logger::LVL::ERR: out << " ERROR "s; break;
-    }
-    return out;
-}
-
 Logger::~Logger() {
     if (!m_log_file_name.empty()) {
         m_log_stream.close();
@@ -97,13 +85,19 @@ void Logger::InnerLogStartLine(LVL lvl, const std::string &func, unsigned line) 
 
 void Logger::CloseLogFile() {
     if (m_log_stream.is_open()) {
+        m_log_stream.flush();
         m_log_stream.close();
-        m_log_file_name.clear();
     }
+    m_log_file_name.clear();
+    m_log_stream.clear();
+    m_output = &std::cout;
 }
 
 void Logger::OpenLogFile() {
-    if (m_log_stream.is_open()) return;
+    if (m_log_stream.is_open())
+    {
+        CloseLogFile();
+    }
     if (!std::filesystem::exists(m_log_file_name)) {
         std::filesystem::path dir = m_log_file_name;
         dir.remove_filename();
@@ -113,7 +107,7 @@ void Logger::OpenLogFile() {
     }
 
     m_log_stream.open(m_log_file_name, std::ios::app);
-    if (m_log_stream.fail()) {
+    if (!m_log_stream) {
         m_log_stream.clear();
         std::cerr << "Can't open/create log file\n";
         std::cerr << "Output set to stdout\n" << std::endl;
@@ -142,4 +136,17 @@ std::vector<LogLine> ParseLogLines(const std::string &lines) {
 }
 
 } //namespace ITAC::common
+
+std::ostream& operator<<(std::ostream& out, ITAC::common::Logger::LVL lvl) {
+    using namespace std::string_literals;
+    using L = ITAC::common::Logger::LVL;
+    switch(lvl) {
+        case L::TRC: out << " TRACE "s; break;
+        case L::DBG: out << " DEBUG "s; break;
+        case L::INF: out << " INFO  "s; break;
+        case L::WRN: out << "WARNING"s; break;
+        case L::ERR: out << " ERROR "s; break;
+    }
+    return out;
+}
 

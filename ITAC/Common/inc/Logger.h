@@ -120,6 +120,7 @@ private:
     std::filesystem::path m_log_file_name;
     std::ofstream m_log_stream;
     std::ostream *m_output = &std::cout;
+
     std::mutex m_out_mtx;
     LVL m_level = LVL::WRN;
     static std::atomic<Logger*> m_instance;
@@ -133,6 +134,7 @@ private:
     template<typename T>
     void InnerLog(T t) {
         *m_output << t << std::endl;
+        m_output->flush();
     }
 
     /** Recursive function for any count of args */
@@ -172,10 +174,6 @@ struct LogLine {
  */
 std::vector<LogLine> ParseLogLines(const std::string &lines);
 
-#define TRC(...) common::Logger::GetInstance()->Log(ITAC::common::Logger::LVL::TRC, __func__, __LINE__, __VA_ARGS__)
-#define DBG(...) common::Logger::GetInstance()->Log(ITAC::common::Logger::LVL::DBG, __func__, __LINE__, __VA_ARGS__)
-#define INF(...) common::Logger::GetInstance()->Log(ITAC::common::Logger::LVL::INF, __func__, __LINE__, __VA_ARGS__)
-#define WRN(...) common::Logger::GetInstance()->Log(ITAC::common::Logger::LVL::WRN, __func__, __LINE__, __VA_ARGS__)
-#define ERR(...) common::Logger::GetInstance()->Log(ITAC::common::Logger::LVL::ERR, __func__, __LINE__, __VA_ARGS__)
-
 } // namespace ITAC::common
+
+std::ostream& operator<<(std::ostream& out, ITAC::common::Logger::LVL lvl);
