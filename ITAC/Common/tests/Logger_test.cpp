@@ -172,6 +172,7 @@ TEST(Logger, SetOutput) {
         auto t = ITAC::common::ParseLogLines(ss.str());
         EXPECT_EQ(t.size(), 2U);
     }
+    std::filesystem::remove(path);
 }
 
 TEST(Logger, ParseLogLines) {
@@ -211,5 +212,27 @@ TEST(Logger, ParseLogLines) {
         auto t = ITAC::common::ParseLogLines(not_valid);
         ASSERT_EQ(t.size(), 0U);
     }
+}
+
+TEST(Logger, Macro) {
+    auto *log = ITAC::common::Logger::GetInstance();
+    using lvl = ITAC::common::Logger::LVL;
+    log->SetLvl(lvl::TRC);
+    std::stringstream log_output;
+    log->SetOutput(log_output);
+
+    TRC("trace");
+    DBG("debug");
+    INF("info");
+    WRN("warning");
+    ERR("error");
+
+    auto t = ITAC::common::ParseLogLines(log_output.str());
+    ASSERT_EQ(t.size(), 5U);
+    EXPECT_STREQ(t[0].level.c_str(), "TRACE");
+    EXPECT_STREQ(t[1].level.c_str(), "DEBUG");
+    EXPECT_STREQ(t[2].level.c_str(), "INFO");
+    EXPECT_STREQ(t[3].level.c_str(), "WARNING");
+    EXPECT_STREQ(t[4].level.c_str(), "ERROR");
 }
 

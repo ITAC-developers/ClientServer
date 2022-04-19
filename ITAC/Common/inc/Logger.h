@@ -177,3 +177,15 @@ std::vector<LogLine> ParseLogLines(const std::string &lines);
 } // namespace ITAC::common
 
 std::ostream& operator<<(std::ostream& out, ITAC::common::Logger::LVL lvl);
+
+
+#define TRC(...) ITAC::common::Logger::GetInstance()->Log(\
+    ITAC::common::Logger::LVL::TRC, __func__, __LINE__, __VA_ARGS__)
+#define DBG(...) ITAC::common::Logger::GetInstance()->Log(\
+    ITAC::common::Logger::LVL::DBG, __func__, __LINE__, __VA_ARGS__)
+#define INF(...) ITAC::common::Logger::GetInstance()->Log(\
+    ITAC::common::Logger::LVL::INF, __func__, __LINE__, __VA_ARGS__)
+#define WRN(...) ITAC::common::Logger::GetInstance()->Log(\
+    ITAC::common::Logger::LVL::WRN, __func__, __LINE__, __VA_ARGS__)
+#define ERR(...) ITAC::common::Logger::GetInstance()->Log(\
+    ITAC::common::Logger::LVL::ERR, __func__, __LINE__, __VA_ARGS__)
