@@ -8,12 +8,97 @@
     Title="Authorization"
     Width="350"
     Height="500"
+    MinWidth="300"
+    MinHeight="400"
     mc:Ignorable="d">
     <Grid Name="baseGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
-            <RowDefinition />
-            <RowDefinition Height="120" />
+            <RowDefinition Height="0.20*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="0.20*" />
+            <RowDefinition Height="0.05*" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.20*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="0.20*" />
+        </Grid.ColumnDefinitions>
+        <GroupBox
+            Name="Authorization"
+            Grid.Row="1"
+            Grid.Column="1"
+            Header="Authorization">
+            <Grid Name="gridAuthorization">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.15*" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="0.05*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="0.15*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.10*" />
+                    <ColumnDefinition Width="0.15*" />
+                    <ColumnDefinition Width="0.35*" />
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="0.10*" />
+                </Grid.ColumnDefinitions>
+                <TextBox
+                    Name="loginBox"
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="2"
+                    Height="30" />
+                <CheckBox
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3">
+                    Remembe it
+                </CheckBox>
+                <PasswordBox
+                    Name="PasswordBoxAuth"
+                    Grid.Row="3"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="2"
+                    Height="30" />
+                <Button
+                    Grid.Row="6"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3">
+                    Authorizate
+                </Button>
+                <TextBlock
+                    Name="fogotLink"
+                    Grid.Row="8"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    HorizontalAlignment="Center">
+                    Forgot?
+                </TextBlock>
+                <TextBlock
+                    Name="registrLink"
+                    Grid.Row="8"
+                    Grid.Column="3"
+                    HorizontalAlignment="Center">
+                    Registration
+                </TextBlock>
+                <Rectangle
+                    Name="hintsAuthorization"
+                    Grid.Row="10"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    RadiusX="10"
+                    RadiusY="10"
+                    Stroke="LightGray"
+                    StrokeThickness="1" />
+            </Grid>
+        </GroupBox>
     </Grid>
 </Window>
