@@ -36,12 +36,13 @@ std::size_t MySocket::Send(const std::string& buf, int flags)
 
 std::size_t MySocket::Recv(std::string& buf,int flags)
 {
-
-	char buffer[4096]; 
+ 
 	if(!active)
 	{
 		return active;
 	}
+
+	char buffer[4096];
 
 	int res = recv(Socket, buffer, sizeof (buffer), flags);
 	if(res == -1)
