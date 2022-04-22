@@ -29,3 +29,5 @@ C:\andrew\work\ClientServer\clients\ITACmessendgerMVVM(wpf)\obj\Debug\ITACmessen
 C:\andrew\work\ClientServer\clients\ITACmessendgerMVVM(wpf)\obj\Debug\ITACmessendgerMVVM(wpf).csproj.GenerateResource.cache
 C:\andrew\work\ClientServer\clients\ITACmessendgerMVVM(wpf)\obj\Debug\ITACmessendgerMVVM(wpf).csproj.CoreCompileInputs.cache
 C:\andrew\work\ClientServer\clients\ITACmessendgerMVVM(wpf)\obj\Debug\ITACmessendgerMVVM(wpf).exe
+C:\andrew\work\ClientServer\clients\ITACmessendgerMVVM(wpf)\obj\Debug\Resources\styles\darkStyle.baml
+C:\andrew\work\ClientServer\clients\ITACmessendgerMVVM(wpf)\obj\Debug\App.baml
