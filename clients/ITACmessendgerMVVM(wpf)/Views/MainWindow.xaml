@@ -96,16 +96,20 @@
                     HorizontalAlignment="Center">
                     Registration
                 </TextBlock>
-                <Rectangle
-                    Style="{DynamicResource hintsStyle}"
-                    Name="hintsAuthorization"
+                <Border
                     Grid.Row="10"
                     Grid.Column="1"
                     Grid.ColumnSpan="3"
-                    RadiusX="10"
-                    RadiusY="10"
-                    Stroke="LightGray"
-                    StrokeThickness="1" />
+                    BorderThickness="2"
+                    BorderBrush="White"
+                    CornerRadius="4"
+                    Background="LightSteelBlue">
+                    <TextBlock
+                        Name="hintsAuthorization"
+                        Style="{DynamicResource hintsStyle}">
+                        Server not found...
+                    </TextBlock>
+                </Border>
             </Grid>
         </GroupBox>
     </Grid>
