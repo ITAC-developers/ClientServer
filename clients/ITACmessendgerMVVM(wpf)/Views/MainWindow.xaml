@@ -52,10 +52,12 @@
                     <ColumnDefinition Width="0.10*" />
                 </Grid.ColumnDefinitions>
                 <TextBox
+                    Style="{DynamicResource loginFieldStyle }"
+                    Text="Login"
                     Name="loginBox"
                     Grid.Row="1"
-                    Grid.Column="2"
-                    Grid.ColumnSpan="2"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
                     Height="30" />
                 <CheckBox
                     Grid.Row="5"
@@ -65,10 +67,12 @@
                     Remembe it
                 </CheckBox>
                 <PasswordBox
+                    Style="{DynamicResource passwordFieldStyle}"
+                    Password="Password"
                     Name="PasswordBoxAuth"
                     Grid.Row="3"
-                    Grid.Column="2"
-                    Grid.ColumnSpan="2"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
                     Height="30" />
                 <Button
                     Grid.Row="6"
@@ -93,6 +97,7 @@
                     Registration
                 </TextBlock>
                 <Rectangle
+                    Style="{DynamicResource hintsStyle}"
                     Name="hintsAuthorization"
                     Grid.Row="10"
                     Grid.Column="1"
