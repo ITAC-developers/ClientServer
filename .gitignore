@@ -40,5 +40,8 @@ cmake-build*
 build/
 Testing
 
+#.net
 clientWin/ITAC_WinClient/obj
 clientWin/ITAC_WinClient/bin
+clients\ITACmessendgerMVVM(wpf)/obj
+clients\ITACmessendgerMVVM(wpf)/bin
