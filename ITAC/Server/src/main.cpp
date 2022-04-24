@@ -1,10 +1,10 @@
 #include "Server.h"
 
-int main(void)
+int main()
 {
-    using namespace itac::server;
-    Server server(80);
+    MyServer server;
     server.MainCycle();
+
     return 0;
 }
 
