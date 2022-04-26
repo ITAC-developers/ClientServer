@@ -11,15 +11,21 @@ namespace ITACmessendgerMVVM_wpf_.ViewModels
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         authorizateForm authoForm;
-        public authorizateForm AuthoForm { get; set; }
+        public authorizateForm AuthoForm 
+        {
+            get { return authoForm; }
+            set { authoForm = value; }
+        }
         public MainWindowViewModel()
         {
-            AuthoForm = new authorizateForm();
-            AuthoForm.Login = "andreysp";
-            AuthoForm.Password = "Password";
-            AuthoForm.IsAuthirizated = false;
-            AuthoForm.IsRemembered = true;
-            AuthoForm.MsgHint = "Server not founded";
+            AuthoForm = new authorizateForm
+            {
+                Login = "andreysp",
+                Password = "Password",
+                IsAuthirizated = false,
+                IsRemembered = true,
+                MsgHint = "Server not founded"
+            };
         }
         public event PropertyChangedEventHandler PropertyChanged;
         void OnPropertyChanged(string propertyData)
