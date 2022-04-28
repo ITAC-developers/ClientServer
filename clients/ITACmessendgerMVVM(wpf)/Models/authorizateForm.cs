@@ -14,7 +14,8 @@ namespace ITACmessendgerMVVM_wpf_.Models
         bool isAuthirizated;
         bool isRemembered;
         string msgHint;
-        public string Login {
+        public string Login 
+        {
             get { return login; }
             set {
                 login = value;

@@ -23,7 +23,7 @@ namespace SocketTcpServer
                 // начинаем прослушивание
                 listenSocket.Listen(10);
 
-                Console.WriteLine("Сервер запущен. Ожидание подключений...");
+                Console.WriteLine("Server started");
 
                 while (true)
                 {

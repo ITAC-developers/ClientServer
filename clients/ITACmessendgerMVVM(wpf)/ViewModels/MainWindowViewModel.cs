@@ -13,21 +13,39 @@ namespace ITACmessendgerMVVM_wpf_.ViewModels
     {
         
         authorizateForm authoForm;
+        client clientITAC;
         public authorizateForm AuthoForm 
         {
             get { return authoForm; }
-            set { authoForm = value; }
+            private set { authoForm = value; }
+        }
+        public client ClientITAC
+        {
+            get { return clientITAC; }
+            private set { clientITAC = value; } 
         }
         public MainWindowViewModel()
         {
-            AuthoForm = new authorizateForm
+            clientITAC = new client();
+            clientITAC.HostName = "127.0.0.1";
+            clientITAC.PortServer = 8005;
+            clientITAC.connectToSetver();
+                        
+            AuthoForm = new authorizateForm();
+            authoForm.Login = "andreysp";
+            authoForm.Password = "Password";
+            authoForm.IsAuthirizated = false;
+            authoForm.IsRemembered = false;
+            if (clientITAC.IsConnected)
             {
-                Login = "andreysp",
-                Password = "Password",
-                IsAuthirizated = false,
-                IsRemembered = false,
-                MsgHint = "Server not founded"
-            };
+                authoForm.MsgHint = "Server connected";
+            }
+            else 
+            { 
+                authoForm.MsgHint = "Server not founded"; 
+            }
+
+            clientITAC.sendMsg("login:" + authoForm.Login + ". Password:" + authoForm.Password);
         }
         public event PropertyChangedEventHandler PropertyChanged;
         void OnPropertyChanged(string propertyData)

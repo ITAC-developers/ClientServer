@@ -15,7 +15,10 @@
     <Window.DataContext>
         <viewModels:MainWindowViewModel />
     </Window.DataContext>
-    <Grid Name="baseGrid" Style="{DynamicResource gridAuthorizateStyle}">
+    <Grid
+        Name="baseGrid"
+        Background="LightSlateGray"
+        Style="{DynamicResource gridAuthorizateStyle}">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.20*" />
             <RowDefinition Height="*" />
@@ -108,7 +111,7 @@
                     Background="LightSteelBlue"
                     BorderBrush="White"
                     BorderThickness="2"
-                    CornerRadius="4">
+                    CornerRadius="10">
                     <TextBlock
                         Name="hintsAuthorization"
                         Style="{DynamicResource hintsStyle}"

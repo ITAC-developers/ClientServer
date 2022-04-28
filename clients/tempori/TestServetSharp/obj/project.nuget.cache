@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "CQXiAY9Tltnf45mv7fiPK3eeayqaTkrSWgvjCNQA8VtSdSoAbOAFN62wAgKuZjPXjktkJfDmqJmWn9nZnw7eYg==",
+  "dgSpecHash": "IrJCJPRpXkBXh8LRyKZmoQ4ItZzvaqnfgMu7HYZVvzE9czu2ZKqDJdXfsDnhkk0bCzD/8KxgNWdCbtf+xctkAA==",
   "success": true,
-  "projectFilePath": "V:\\ITAC\\ClientServer\\clients\\tempori\\TestServetSharp\\TestServetSharp.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\andrew\\work\\ClientServer\\clients\\tempori\\TestServetSharp\\TestServetSharp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\andreysp\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.15\\microsoft.netcore.app.host.win-x64.5.0.15.nupkg.sha512",
+    "C:\\Users\\andreysp\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\5.0.0\\microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\andreysp\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\andreysp\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
