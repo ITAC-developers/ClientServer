@@ -24,6 +24,5 @@ namespace ITACmessendgerMVVM_wpf_.Views
         {
             InitializeComponent();
         }
-
     }
 }

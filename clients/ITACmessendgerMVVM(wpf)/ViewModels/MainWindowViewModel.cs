@@ -5,11 +5,13 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ITACmessendgerMVVM_wpf_.ViewModels
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
+        
         authorizateForm authoForm;
         public authorizateForm AuthoForm 
         {
@@ -23,7 +25,7 @@ namespace ITACmessendgerMVVM_wpf_.ViewModels
                 Login = "andreysp",
                 Password = "Password",
                 IsAuthirizated = false,
-                IsRemembered = true,
+                IsRemembered = false,
                 MsgHint = "Server not founded"
             };
         }

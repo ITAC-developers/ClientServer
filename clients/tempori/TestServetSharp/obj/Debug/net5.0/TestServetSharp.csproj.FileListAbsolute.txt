@@ -1,0 +1,16 @@
+V:\ITAC\ClientServer\clients\tempori\TestServetSharp\bin\Debug\net5.0\TestServetSharp.exe
+V:\ITAC\ClientServer\clients\tempori\TestServetSharp\bin\Debug\net5.0\TestServetSharp.deps.json
+V:\ITAC\ClientServer\clients\tempori\TestServetSharp\bin\Debug\net5.0\TestServetSharp.runtimeconfig.json
+V:\ITAC\ClientServer\clients\tempori\TestServetSharp\bin\Debug\net5.0\TestServetSharp.runtimeconfig.dev.json
+V:\ITAC\ClientServer\clients\tempori\TestServetSharp\bin\Debug\net5.0\TestServetSharp.dll
+V:\ITAC\ClientServer\clients\tempori\TestServetSharp\bin\Debug\net5.0\ref\TestServetSharp.dll
+V:\ITAC\ClientServer\clients\tempori\TestServetSharp\bin\Debug\net5.0\TestServetSharp.pdb
+V:\ITAC\ClientServer\clients\tempori\TestServetSharp\obj\Debug\net5.0\TestServetSharp.csproj.AssemblyReference.cache
+V:\ITAC\ClientServer\clients\tempori\TestServetSharp\obj\Debug\net5.0\TestServetSharp.GeneratedMSBuildEditorConfig.editorconfig
+V:\ITAC\ClientServer\clients\tempori\TestServetSharp\obj\Debug\net5.0\TestServetSharp.AssemblyInfoInputs.cache
+V:\ITAC\ClientServer\clients\tempori\TestServetSharp\obj\Debug\net5.0\TestServetSharp.AssemblyInfo.cs
+V:\ITAC\ClientServer\clients\tempori\TestServetSharp\obj\Debug\net5.0\TestServetSharp.csproj.CoreCompileInputs.cache
+V:\ITAC\ClientServer\clients\tempori\TestServetSharp\obj\Debug\net5.0\TestServetSharp.dll
+V:\ITAC\ClientServer\clients\tempori\TestServetSharp\obj\Debug\net5.0\ref\TestServetSharp.dll
+V:\ITAC\ClientServer\clients\tempori\TestServetSharp\obj\Debug\net5.0\TestServetSharp.pdb
+V:\ITAC\ClientServer\clients\tempori\TestServetSharp\obj\Debug\net5.0\TestServetSharp.genruntimeconfig.cache
