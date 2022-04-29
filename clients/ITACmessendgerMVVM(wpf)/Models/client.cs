@@ -38,17 +38,19 @@ namespace ITACmessendgerMVVM_wpf_.Models
         }
         public void connectToSetver()
         {
-            if ((hostName != null) && (portServer > 0))
-            {
+           try
+           {
                 tcpEndPoint = new IPEndPoint(IPAddress.Parse(hostName), portServer);
                 tcpSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 tcpSocket.Connect(tcpEndPoint);
                 isConnected = tcpSocket.Connected;
-            }
-            else
-            {
+                answer = "Server found";
+           }
+           catch (Exception ex)
+           { 
+                isConnected = false;
                 answer = "Server not found"; //TODO: make loger
-            }
+           }
         }
 
         public void sendMsg(string msg)

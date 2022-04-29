@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ITACmessendgerMVVM_wpf_.Views
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Interaction logic for MessendgerWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MessendgerWindow : Window
     {
-        public MainWindow()
+        public MessendgerWindow()
         {
             InitializeComponent();
         }

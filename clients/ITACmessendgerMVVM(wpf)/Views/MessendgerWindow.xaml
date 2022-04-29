@@ -1,0 +1,17 @@
+﻿<Window
+    x:Class="ITACmessendgerMVVM_wpf_.Views.MessendgerWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ITACmessendgerMVVM_wpf_.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:ITACmessendgerMVVM_wpf_.ViewModels"
+    Title="MessendgerITAC"
+    Width="800"
+    Height="450"
+    mc:Ignorable="d">
+    <Window.DataContext>
+        <viewModels:MessendgerWindowViewModel/>
+    </Window.DataContext>
+    <Grid />
+</Window>

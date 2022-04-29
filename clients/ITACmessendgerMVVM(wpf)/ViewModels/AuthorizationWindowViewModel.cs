@@ -9,7 +9,7 @@ using System.Windows;
 
 namespace ITACmessendgerMVVM_wpf_.ViewModels
 {
-    public class MainWindowViewModel : INotifyPropertyChanged
+    public class AuthorizationWindowViewModel : INotifyPropertyChanged
     {
         
         authorizateForm authoForm;
@@ -24,7 +24,7 @@ namespace ITACmessendgerMVVM_wpf_.ViewModels
             get { return clientITAC; }
             private set { clientITAC = value; } 
         }
-        public MainWindowViewModel()
+        public AuthorizationWindowViewModel()
         {
             clientITAC = new client();
             clientITAC.HostName = "127.0.0.1";
@@ -36,14 +36,8 @@ namespace ITACmessendgerMVVM_wpf_.ViewModels
             authoForm.Password = "Password";
             authoForm.IsAuthirizated = false;
             authoForm.IsRemembered = false;
-            if (clientITAC.IsConnected)
-            {
-                authoForm.MsgHint = "Server connected";
-            }
-            else 
-            { 
-                authoForm.MsgHint = "Server not founded"; 
-            }
+            authoForm.MsgHint = clientITAC.Answer;
+            
 
             clientITAC.sendMsg("login:" + authoForm.Login + ". Password:" + authoForm.Password);
         }
