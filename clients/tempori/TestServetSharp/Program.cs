@@ -36,7 +36,7 @@ namespace SocketTcpServer
                     do
                     {
                         bytes = handler.Receive(data);
-                        builder.Append(Encoding.Unicode.GetString(data, 0, bytes));
+                        builder.Append(Encoding.UTF8.GetString(data, 0, bytes));
                     }
                     while (handler.Available > 0);
 
@@ -44,7 +44,7 @@ namespace SocketTcpServer
 
                     // отправляем ответ
                     string message = "ваше сообщение доставлено";
-                    data = Encoding.Unicode.GetBytes(message);
+                    data = Encoding.UTF8.GetBytes(message);
                     handler.Send(data);
                     // закрываем сокет
                     handler.Shutdown(SocketShutdown.Both);
