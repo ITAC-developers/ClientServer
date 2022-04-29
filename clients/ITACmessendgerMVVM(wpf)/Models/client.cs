@@ -38,7 +38,7 @@ namespace ITACmessendgerMVVM_wpf_.Models
         }
         public void connectToSetver()
         {
-            if ((hostName != null) && (portServer <=0))
+            if ((hostName != null) && (portServer > 0))
             {
                 tcpEndPoint = new IPEndPoint(IPAddress.Parse(hostName), portServer);
                 tcpSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
