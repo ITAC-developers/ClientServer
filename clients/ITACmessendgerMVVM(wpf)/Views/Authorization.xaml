@@ -5,9 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ITACmessendgerMVVM_wpf_.Views"
         mc:Ignorable="d"
-        Title="Authorization" Height="450" Width="380" 
+        xmlns:viewModels="clr-namespace:ITACmessendgerMVVM_wpf_.ViewModels"
+        Title="Authorization" Height="500" Width="380" 
         AllowsTransparency="True" Background="Transparent"
-        WindowStyle="None" ResizeMode="NoResize">
+        WindowStyle="None" ResizeMode="NoResize"
+        MouseDown="Window_MouseDown">
+    <Window.DataContext>
+        <viewModels:AuthorizationViewModel/>
+    </Window.DataContext>
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -19,8 +24,8 @@
             <Border CornerRadius="10" Grid.RowSpan="3">
                 <Border.Background>
                     <LinearGradientBrush>
-                        <GradientStop Color="#FFF77CDE" Offset="0"/>
-                        <GradientStop Color="#FF3ADA4E" Offset="1"/>
+                        <GradientStop Color="#FF573EF7" Offset="0"/>
+                        <GradientStop Color="#FF3ADA4E" Offset="0.9"/>
                     </LinearGradientBrush>
                 </Border.Background>
             </Border>
@@ -40,7 +45,7 @@
             <StackPanel Grid.Row="2">
                 <StackPanel Orientation="Horizontal">
                     <TextBox 
-                    Text="Enter username"
+                    Text="{Binding Path=AuthoForm.Login}"
                     FontSize="20"
                     HorizontalAlignment="Center"
                     Foreground="White"
@@ -79,8 +84,57 @@
                 Height="2" 
                 Background="white" 
                 Opacity="0.5"/>
-            </StackPanel>    
                 
+                <StackPanel 
+                    HorizontalAlignment="Left"
+                    Orientation="Horizontal" 
+                    VerticalAlignment="Center" 
+                    Margin="60,20,0,0">
+                  
+                    <CheckBox 
+                        Content="Remember" 
+                        FontSize="13" 
+                        Foreground="White" 
+                        Opacity="0.7"/>
+                </StackPanel>
+                <StackPanel 
+                    Orientation="Horizontal" Margin="0,20,0,0">
+                    <Button 
+                        Height="40" 
+                        Content="LOGIN" 
+                        Width="110" 
+                        Margin="60,0,0,0"/>
+                    <Button 
+                        Height="40" 
+                        Content="REGISTER" 
+                        Width="110" 
+                        Margin="40,0,60,0"/>
+                    
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Забыли логин или пароль?" 
+                               Margin="60,10,0,0"
+                               Foreground="white"
+                               FontSize="10"
+                               Opacity="0.8"
+                               FontWeight="Normal"
+                               Visibility="Hidden"/>
+                    <TextBlock Text="Востановить?"
+                               Margin="2,10,0,0"
+                               Foreground="White"
+                               FontSize="10"
+                               FontWeight="Bold"
+                               Visibility="Hidden"/>
+                </StackPanel>
+            </StackPanel>
+            
+            
+            
+
+            
+
+
+
         </Grid>
     </Grid>
 </Window>
