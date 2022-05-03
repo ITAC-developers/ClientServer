@@ -45,7 +45,7 @@
             <StackPanel Grid.Row="2">
                 <StackPanel Orientation="Horizontal">
                     <TextBox 
-                    Text="{Binding Path=AuthoForm.Login}"
+                    Text="{Binding Path=AuthoForm.Login, Mode=TwoWay}" 
                     FontSize="20"
                     HorizontalAlignment="Center"
                     Foreground="White"
