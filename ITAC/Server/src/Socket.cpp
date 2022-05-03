@@ -1,6 +1,8 @@
 #include "Socket.h"
 //using namespace itac::socket;
 
+
+
 MySocket::MySocket()
 {
 
@@ -14,6 +16,7 @@ MySocket::MySocket()
 	 addr.sin_addr.s_addr = htonl(INADDR_ANY);
  
 }
+
 
 
 std::size_t MySocket::Send(const std::string& buf, int flags)
@@ -51,7 +54,7 @@ std::size_t MySocket::Recv(std::string& buf,int flags)
 	if (res == 0) 
 	{
 		active = false;
-       	std::cout<<("client dead\n")<<std::endl;
+       		std::cout<<("client dead\n")<<std::endl;
 	}
 	
 	buf = std::string(buffer, res);
@@ -62,13 +65,12 @@ std::size_t MySocket::Recv(std::string& buf,int flags)
 
 int MySocket::Bind()
 {
-    int res = bind(Socket,(struct sockaddr*) &addr, sizeof addr);
-    if (res == -1)
-    {
-        throw std :: runtime_error("bind faled");
+        int res = bind(Socket,(struct sockaddr*) &addr, sizeof addr);
+        if (res == -1)
+        {
+                throw std :: runtime_error("bind faled");
 
-    }
-
+        }
 	return res;
 }
 
@@ -81,6 +83,17 @@ void MySocket::Listen()
         }
 
         active = true;
+}
+
+MySocket MySocket :: Accept()
+{
+		int sockfd = accept(Socket, NULL, NULL);
+		if(sockfd == -1)
+		{
+				throw std :: runtime_error("accept faled");
+		}
+
+		return MySocket(sockfd);
 }
 
 

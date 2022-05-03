@@ -8,14 +8,13 @@ class MyServer
 public:
 	MyServer();
 	~MyServer();
-	
+
+	void StartServer();
 	void MainCycle();
 	
 private:
 
+
 	MySocket msoc;
-	struct sockaddr_in addr = {0};
-	int sockfd;
-	//int bytes_read;
 	
 };

@@ -11,7 +11,9 @@ add_compile_options(-O0 -g -Werror -Wextra -Wall -pedantic)
 include_directories(${SERVER_DIR}/inc)
 
 add_executable(${PROJECT_NAME}	src/main.cpp
-	src/Server.cpp inc/Server.h)
+	src/Server.cpp inc/Server.h src/Socket.cpp inc/Socket.h)
+
+add_library(Socket_lib src/Socket.cpp inc/Socket.h)
 
 add_library(Server_lib src/Server.cpp inc/Server.h)
 
