@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 project(ITAC)
 
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED)
 
 # config google test
 include(FetchContent)
@@ -15,5 +16,6 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
+add_subdirectory(ITAC/Common)
 add_subdirectory(ITAC/Server)
 
