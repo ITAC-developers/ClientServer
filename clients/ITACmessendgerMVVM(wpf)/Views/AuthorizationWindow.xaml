@@ -17,9 +17,9 @@
     </Window.DataContext>
     <Grid>
         <Grid
-        Name="baseGrid"
-        Background="LightSlateGray"
-        Style="{DynamicResource gridAuthorizateStyle}">
+            Name="baseGrid"
+            Background="LightSlateGray"
+            Style="{DynamicResource gridAuthorizateStyle}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.20*" />
                 <RowDefinition Height="*" />
@@ -32,11 +32,11 @@
                 <ColumnDefinition Width="0.20*" />
             </Grid.ColumnDefinitions>
             <GroupBox
-            Name="Authorization"
-            Grid.Row="1"
-            Grid.Column="1"
-            Header="Authorization"
-            Style="{DynamicResource groupAuthorizateStyle}">
+                Name="Authorization"
+                Grid.Row="1"
+                Grid.Column="1"
+                Header="Authorization"
+                Style="{DynamicResource groupAuthorizateStyle}">
                 <Grid Name="gridAuthorization">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.15*" />
@@ -60,63 +60,63 @@
                         <ColumnDefinition Width="0.10*" />
                     </Grid.ColumnDefinitions>
                     <TextBox
-                    Name="loginBox"
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Grid.ColumnSpan="3"
-                    Height="30"
-                    Style="{DynamicResource loginFieldStyle}"
-                    Text="{Binding Path=AuthoForm.Login, Mode=TwoWay}" />
+                        Name="loginBox"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Height="30"
+                        Style="{DynamicResource loginFieldStyle}"
+                        Text="{Binding Path=AuthoForm.Login, Mode=TwoWay}" />
                     <CheckBox
-                    Grid.Row="5"
-                    Grid.Column="1"
-                    Grid.ColumnSpan="3"
-                    IsChecked="{Binding Path=AuthoForm.IsRemembered, Mode=TwoWay}"
-                    Style="{DynamicResource chkBoxStyle}">
+                        Grid.Row="5"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        IsChecked="{Binding Path=AuthoForm.IsRemembered, Mode=TwoWay}"
+                        Style="{DynamicResource chkBoxStyle}">
                         Remembe it
                     </CheckBox>
                     <PasswordBox
-                    Name="PasswordBoxAuth"
-                    Grid.Row="3"
-                    Grid.Column="1"
-                    Grid.ColumnSpan="3"
-                    Height="30"
-                    Password="Password"
-                    Style="{DynamicResource passwordFieldStyle}" />
+                        Name="PasswordBoxAuth"
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Height="30"
+                        Password="Password"
+                        Style="{DynamicResource passwordFieldStyle}" />
                     <Button
-                    Grid.Row="6"
-                    Grid.Column="1"
-                    Grid.ColumnSpan="3"
-                    Style="{DynamicResource btnBaseStyle}">
+                        Grid.Row="6"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Style="{DynamicResource btnBaseStyle}">
                         Authorizate
                     </Button>
                     <TextBlock
-                    Name="fogotLink"
-                    Grid.Row="8"
-                    Grid.Column="1"
-                    Grid.ColumnSpan="2"
-                    HorizontalAlignment="Center">
-                    Forgot?
+                        Name="fogotLink"
+                        Grid.Row="8"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        HorizontalAlignment="Center">
+                        Forgot?
                     </TextBlock>
                     <TextBlock
-                    Name="registrLink"
-                    Grid.Row="8"
-                    Grid.Column="3"
-                    HorizontalAlignment="Center">
-                    Registration
+                        Name="registrLink"
+                        Grid.Row="8"
+                        Grid.Column="3"
+                        HorizontalAlignment="Center">
+                        Registration
                     </TextBlock>
                     <Border
-                    Grid.Row="10"
-                    Grid.Column="1"
-                    Grid.ColumnSpan="3"
-                    Background="LightSteelBlue"
-                    BorderBrush="White"
-                    BorderThickness="2"
-                    CornerRadius="10">
+                        Grid.Row="10"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Background="LightSteelBlue"
+                        BorderBrush="White"
+                        BorderThickness="2"
+                        CornerRadius="10">
                         <TextBlock
-                        Name="hintsAuthorization"
-                        Style="{DynamicResource hintsStyle}"
-                        Text="{Binding Path=AuthoForm.MsgHint}" />
+                            Name="hintsAuthorization"
+                            Style="{DynamicResource hintsStyle}"
+                            Text="{Binding Path=AuthoForm.MsgHint}" />
 
 
                     </Border>

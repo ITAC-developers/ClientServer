@@ -9,9 +9,67 @@
     Title="MessendgerITAC"
     Width="800"
     Height="450"
+    AllowsTransparency="True"
+    Background="Transparent"
+    ResizeMode="NoResize"
+    WindowStyle="None"
     mc:Ignorable="d">
     <Window.DataContext>
-        <viewModels:MessendgerWindowViewModel/>
+        <viewModels:MessendgerWindowViewModel />
     </Window.DataContext>
-    <Grid />
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35" />
+                <RowDefinition Height="80*" />
+                <RowDefinition Height="10*" />
+            </Grid.RowDefinitions>
+            <Border Grid.RowSpan="3" CornerRadius="10">
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Offset="0.2" Color="#FF573EF7" />
+                        <GradientStop Offset="0.8" Color="#FF3ADA4E" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border
+                    Grid.Row="0"
+                    Margin="0,20,20,20"
+                    Background="White"
+                    CornerRadius="0,50,50,0"
+                    Opacity="0.6" />
+            </Border>
+            <DockPanel Grid.Row="1" Margin="20,10,50,10">
+                <StackPanel DockPanel.Dock="Left" Margin="2">
+                    <Border Width="200" 
+                            Height="345"
+                            Visibility="Visible" 
+                            BorderThickness="1" 
+                            BorderBrush="Black"
+                            Opacity="0.5"
+                            CornerRadius="5"/>
+                </StackPanel>
+                <StackPanel DockPanel.Dock="Right" Margin="2">
+                    <Border Width="200" 
+                            Height="345"
+                            Visibility="Visible" 
+                            BorderThickness="1" 
+                            BorderBrush="Black"/>
+                </StackPanel>
+                <StackPanel DockPanel.Dock="Bottom" Margin="2">
+                    <Border Height="50" 
+                            Visibility="Visible"  
+                            BorderThickness="1" 
+                            BorderBrush="Black"/>
+                </StackPanel>
+                <StackPanel>
+                    <Border Height="290"
+                        Visibility="Visible" 
+                        Margin="2"
+                        BorderThickness="1" 
+                        BorderBrush="Black"/>
+                </StackPanel>
+
+            </DockPanel>
+        </Grid>
+    </Grid>
 </Window>
