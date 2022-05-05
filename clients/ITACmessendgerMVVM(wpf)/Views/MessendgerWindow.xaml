@@ -24,7 +24,7 @@
                 <RowDefinition Height="80*" />
                 <RowDefinition Height="10*" />
             </Grid.RowDefinitions>
-            <Border Grid.RowSpan="3" CornerRadius="10">
+            <Border Grid.RowSpan="3" CornerRadius="10,50,50,10">
                 <Border.Background>
                     <LinearGradientBrush>
                         <GradientStop Offset="0.2" Color="#FF573EF7" />
