@@ -31,5 +31,6 @@ namespace ITACmessendgerMVVM_wpf_.Views
                 DragMove();
             }
         }
+
     }
 }

@@ -17,6 +17,7 @@
     <Window.DataContext>
         <viewModels:MessendgerWindowViewModel />
     </Window.DataContext>
+
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -39,34 +40,29 @@
                     Opacity="0.6" />
             </Border>
             <DockPanel Grid.Row="1" Margin="20,10,50,10">
-                <StackPanel DockPanel.Dock="Left" Margin="2">
-                    <Border Width="200" 
-                            Height="345"
-                            Visibility="Visible" 
-                            BorderThickness="1" 
-                            BorderBrush="Black"
-                            Opacity="0.5"
-                            CornerRadius="5"/>
+                <StackPanel Margin="2" DockPanel.Dock="Left">
+                    <Border
+                        Width="200"
+                        Height="345"
+                        BorderBrush="Black"
+                        BorderThickness="1"
+                        CornerRadius="5"
+                        Opacity="0.5"
+                        Visibility="Visible" />
                 </StackPanel>
-                <StackPanel DockPanel.Dock="Right" Margin="2">
-                    <Border Width="200" 
-                            Height="345"
-                            Visibility="Visible" 
-                            BorderThickness="1" 
-                            BorderBrush="Black"/>
+                <StackPanel Margin="2" DockPanel.Dock="Right">
+                    <Border
+                        Width="200"
+                        Height="345"
+                        BorderBrush="Black"
+                        BorderThickness="1"
+                        Visibility="Visible" />
                 </StackPanel>
-                <StackPanel DockPanel.Dock="Bottom" Margin="2">
-                    <Border Height="50" 
-                            Visibility="Visible"  
-                            BorderThickness="1" 
-                            BorderBrush="Black"/>
+                <StackPanel Margin="2" DockPanel.Dock="Bottom">
+                    <TextBox Height="80" />
                 </StackPanel>
                 <StackPanel>
-                    <Border Height="290"
-                        Visibility="Visible" 
-                        Margin="2"
-                        BorderThickness="1" 
-                        BorderBrush="Black"/>
+                    <TextBlock Height="260" Text="{Binding Messege, Mode=TwoWay}" />
                 </StackPanel>
 
             </DockPanel>
