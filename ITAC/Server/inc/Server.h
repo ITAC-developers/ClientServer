@@ -1,29 +1,20 @@
 #pragma once
+#include "Socket.h"
 
-namespace itac::server
+
+class MyServer
 {
-    enum class ServerState
-    {
-        OFF,
-        CONNECTING,
-        ERROR,
-        ON
-    };
 
-    class Server
-    {
-    public:
-        Server(int port);
-        ~Server();
+public:
+	MyServer();
+	~MyServer();
 
-        void Stop();
-        void MainCycle();
+	void StartServer();
+	void MainCycle();
+	
+private:
 
-        ServerState GetStatus();
-    private:
-        ServerState m_state = ServerState::OFF;
-        int m_port;
-    };
 
-}
-
+	MySocket msoc;
+	
+};
