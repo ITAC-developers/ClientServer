@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "T9FPB8DjQ4s9Om0fh+/TztTCnoBCrePi03EBwFOWK6QNKz+aEtDrSfmmnqxNfHdDjtadMrmYOcLjvFEPo3d6jw==",
+  "success": true,
+  "projectFilePath": "C:\\repositori\\ClientServer\\MobileClient\\ITAC\\ITAC.iOS\\ITAC.iOS.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\chrisval\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\chrisval\\.nuget\\packages\\xamarin.essentials\\1.7.0\\xamarin.essentials.1.7.0.nupkg.sha512",
+    "C:\\Users\\chrisval\\.nuget\\packages\\xamarin.forms\\5.0.0.2196\\xamarin.forms.5.0.0.2196.nupkg.sha512"
+  ],
+  "logs": []
+}

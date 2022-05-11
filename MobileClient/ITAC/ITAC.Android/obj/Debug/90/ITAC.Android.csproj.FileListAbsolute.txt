@@ -1,0 +1,3 @@
+C:\Users\chrisval\source\repos\ITAC\ITAC\ITAC.Android\obj\Debug\90\MonoAndroid,Version=v9.0.AssemblyAttributes.cs
+C:\Users\chrisval\source\repos\ITAC\ITAC\ITAC.Android\obj\Debug\90\build.props
+C:\Users\chrisval\source\repos\ITAC\ITAC\ITAC.Android\obj\Debug\90\adb.props
