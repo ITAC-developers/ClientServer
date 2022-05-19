@@ -30,7 +30,7 @@ namespace ITACmessendgerMVVM_wpf_.ViewModels
 
         private void closeLogin(object obj)
         {
-            //Application.Current.Shutdown();
+            Application.Current.Shutdown();
 
         }
 
