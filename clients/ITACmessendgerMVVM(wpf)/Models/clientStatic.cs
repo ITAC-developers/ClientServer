@@ -8,35 +8,35 @@ using System.Threading.Tasks;
 
 namespace ITACmessendgerMVVM_wpf_.Models
 {
-    public class client
+    static public class clientStatic
     {
-        string hostName;
-        public string HostName
+        static string hostName;
+        static public string HostName
         {
             get { return hostName; }
             set { hostName = value; }
         }
-        int portServer;
-        public int PortServer 
+        static int portServer;
+        static public int PortServer 
         {
             get { return portServer; }
             set { portServer = value; }
         }
-        string answer;
-        public string Answer
+        static string answer;
+        static public string Answer
         {
             get { return answer; }
             private set { answer = value; } 
         }
-        IPEndPoint tcpEndPoint;
-        Socket tcpSocket;
-        bool isConnected=false;
-        public bool IsConnected 
+        static IPEndPoint tcpEndPoint;
+        static Socket tcpSocket;
+        static bool isConnected=false;
+        static public bool IsConnected 
         {
             get { return isConnected; }
             private set { isConnected = value; }
         }
-        public void connectToSetver()
+        static public void connectToSetver()
         {
            try
            {
@@ -53,14 +53,14 @@ namespace ITACmessendgerMVVM_wpf_.Models
            }
         }
 
-        public void sendMsg(string msg)
+        static public void sendMsg(string msg)
         {   
             var data = Encoding.UTF8.GetBytes(msg);
             if (isConnected)
             tcpSocket.Send(data);
         }
 
-        public void getAnswer ()
+        static public void getAnswer ()
         {
             var buffer = new byte[1024];
             var size = 0;
@@ -75,7 +75,7 @@ namespace ITACmessendgerMVVM_wpf_.Models
             answer=answerServer.ToString ();
         }
 
-        public void clientOff()
+        static public void clientOff()
         {
             tcpSocket.Shutdown(SocketShutdown.Both);
             tcpSocket.Close();

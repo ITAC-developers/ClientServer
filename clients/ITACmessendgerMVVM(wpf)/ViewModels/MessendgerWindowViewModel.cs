@@ -13,7 +13,7 @@ namespace ITACmessendgerMVVM_wpf_.ViewModels
 {
     internal class MessendgerWindowViewModel : INotifyPropertyChanged
     {
-        public client Client { get; set; }
+       // public clientStatic Client { get; set; }
         
         public Authorization loginForm { get; set; }
         private string messege;
@@ -31,17 +31,16 @@ namespace ITACmessendgerMVVM_wpf_.ViewModels
        //public ICommand Messenger_CloseCommand { get;private set; }
         public MessendgerWindowViewModel()
         {
+            clientStatic.HostName = "127.0.0.1";
+            clientStatic.PortServer = 8005;
+            clientStatic.connectToSetver();
+            clientStatic.sendMsg("Static send messege\n");
             //authorizateForm AForm = new authorizateForm();
-         //   Messenger_LoadCommand = new messengerCommands(LoginWindowShow);
+            //   Messenger_LoadCommand = new messengerCommands(LoginWindowShow);
             loginForm = new Authorization();
-            client Client = new client();
-            Client.HostName = "127.0.0.1";
-            Client.PortServer = 8005;
-            Client.connectToSetver();
-            if (Client.IsConnected) { Messege = "is connected"; }
-            else { Messege = "not connected"; }
-            Client.sendMsg("main window");
             loginForm.Show();
+
+            
             
            // Client.getAnswer();
 

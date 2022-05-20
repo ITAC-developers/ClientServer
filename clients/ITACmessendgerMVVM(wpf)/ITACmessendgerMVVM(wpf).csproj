@@ -86,7 +86,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\authorizateForm.cs" />
-    <Compile Include="Models\client.cs" />
+    <Compile Include="Models\clientStatic.cs" />
     <Page Include="Views\MessendgerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
