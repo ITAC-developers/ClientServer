@@ -10,13 +10,13 @@ namespace ITACmessendgerMVVM_wpf_.Models
 {
     static public class clientStatic
     {
-        static string hostName;
+        static string hostName = "127.0.0.1";
         static public string HostName
         {
             get { return hostName; }
             set { hostName = value; }
         }
-        static int portServer;
+        static int portServer = 8005;
         static public int PortServer 
         {
             get { return portServer; }
@@ -56,7 +56,7 @@ namespace ITACmessendgerMVVM_wpf_.Models
         static public void sendMsg(string msg)
         {   
             var data = Encoding.UTF8.GetBytes(msg);
-            if (isConnected)
+            if (tcpSocket.Connected)
             tcpSocket.Send(data);
         }
 

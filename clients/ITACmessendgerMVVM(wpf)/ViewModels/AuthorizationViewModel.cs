@@ -14,7 +14,6 @@ namespace ITACmessendgerMVVM_wpf_.ViewModels
     {
         public bool isLogin { get; set; }
         public authorizateForm authoForm { get; set; }
-        // public clientStatic clientLogin { get; set; }
         public ICommand loginCommand { get; private set; }
         public ICommand CloseCommand { get; private set; }
         public AuthorizationViewModel()
@@ -37,6 +36,7 @@ namespace ITACmessendgerMVVM_wpf_.ViewModels
         private void login(object obj)
         {
            isLogin = true;
+           clientStatic.sendMsg(authoForm.Login);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
