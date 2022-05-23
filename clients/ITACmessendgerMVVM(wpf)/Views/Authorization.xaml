@@ -56,7 +56,7 @@
             <StackPanel Grid.Row="2">
                 <StackPanel Orientation="Horizontal">
                     <TextBox
-                        Name ="loginField"
+                        Name="loginField"
                         Width="236"
                         Height="30"
                         Margin="60,0,0,0"
@@ -67,8 +67,8 @@
                         FontSize="20"
                         Foreground="White"
                         Opacity="0.5"
-                        Text="{Binding Path=AuthoForm.Login, Mode=TwoWay}" />
-                    <Image 
+                        Text="{Binding Path=authoForm.Login, Mode=TwoWay}" />
+                    <Image
                         Width="20"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
@@ -93,7 +93,8 @@
                         FontSize="20"
                         Foreground="White"
                         Opacity="0.5"
-                        Password="Username" />
+                        Password="Username" 
+                        />
                     <Image
                         Width="20"
                         HorizontalAlignment="Center"
@@ -124,7 +125,8 @@
                         Height="40"
                         Margin="60,0,0,0"
                         Command="{Binding loginCommand}"
-                        Content="LOGIN" />
+                        Content="LOGIN" 
+                        CommandParameter="{Binding ElementName=passwordField}"/>
                     <Button
                         Width="110"
                         Height="40"

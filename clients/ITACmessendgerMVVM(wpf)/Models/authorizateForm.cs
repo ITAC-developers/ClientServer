@@ -4,13 +4,15 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace ITACmessendgerMVVM_wpf_.Models
 {
     public class authorizateForm : INotifyPropertyChanged
     {
         string login;
-        string password;
+        public string password { get; set; }
+        //string password;
         bool isAuthirizated;
         bool isRemembered;
         string msgHint;
@@ -22,15 +24,15 @@ namespace ITACmessendgerMVVM_wpf_.Models
                 OnPropertyChanged("Login");
                 }
         }
-        public string Password
-        {
-            get { return password; }
-            set
-            {
-                password = value;
-                OnPropertyChanged("Password");
-            }
-        }
+        //public string Password
+        //{
+        //    get { return password; }
+        //    set
+        //    {
+        //        password = value;
+        //        OnPropertyChanged("Password");
+        //    }
+        //}
         public string MsgHint
         {
             get { return msgHint; }

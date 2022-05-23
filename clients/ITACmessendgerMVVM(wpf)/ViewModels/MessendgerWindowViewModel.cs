@@ -27,30 +27,19 @@ namespace ITACmessendgerMVVM_wpf_.ViewModels
                 OnPropertyChanged("Messege");
             }
         }
-       // public ICommand Messenger_LoadCommand { get;private set; }
-       //public ICommand Messenger_CloseCommand { get;private set; }
         public MessendgerWindowViewModel()
         {
-            clientStatic.HostName = "127.0.0.1";
-            clientStatic.PortServer = 8005;
             clientStatic.connectToSetver();
             clientStatic.sendMsg("Static send messege\n");
-            //authorizateForm AForm = new authorizateForm();
-            //   Messenger_LoadCommand = new messengerCommands(LoginWindowShow);
             loginForm = new Authorization();
             loginForm.Show();
-
-            
-            
-           // Client.getAnswer();
 
         }
 
         private void LoginWindowShow(object obj)
 
         {
-           // Authorization loginForm = new Authorization();
-           // loginForm.Show();
+           
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace ITACmessendgerMVVM_wpf_.ViewModels
@@ -35,8 +36,10 @@ namespace ITACmessendgerMVVM_wpf_.ViewModels
 
         private void login(object obj)
         {
-           isLogin = true;
-           clientStatic.sendMsg(authoForm.Login);
+            isLogin = true;
+            var passwordBox = obj as PasswordBox;
+            clientStatic.connectToSetver();
+            clientStatic.sendMsg(authoForm.Login+" "+ passwordBox.Password +"\n");
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
