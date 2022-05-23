@@ -23,7 +23,7 @@ namespace ITACmessendgerMVVM_wpf_.ViewModels
             CloseCommand = new messengerCommands(closeLogin);
             authoForm = new authorizateForm();
             authoForm.Login = "Username";
-            authoForm.Password = "Password";
+           // authoForm.Password = "Password";
             authoForm.IsAuthirizated = false;
             authoForm.IsRemembered = false;
         }
@@ -38,8 +38,10 @@ namespace ITACmessendgerMVVM_wpf_.ViewModels
         {
             isLogin = true;
             var passwordBox = obj as PasswordBox;
+            authoForm.password = passwordBox.Password;
+            messegeJson mesJ = new messegeJson(authoForm);
             clientStatic.connectToSetver();
-            clientStatic.sendMsg(authoForm.Login+" "+ passwordBox.Password +"\n");
+            clientStatic.sendMsg(mesJ.messegeJSON);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
