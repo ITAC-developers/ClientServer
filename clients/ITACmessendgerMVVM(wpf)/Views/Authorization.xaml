@@ -1,0 +1,165 @@
+﻿<Window
+    x:Class="ITACmessendgerMVVM_wpf_.Views.Authorization"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ITACmessendgerMVVM_wpf_.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:ITACmessendgerMVVM_wpf_.ViewModels"
+    Title="Authorization"
+    Width="380"
+    Height="500"
+    AllowsTransparency="True"
+    Background="Transparent"
+    MouseDown="Window_MouseDown"
+    ResizeMode="NoResize"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Window.DataContext>
+        <viewModels:AuthorizationViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35" />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Border Grid.RowSpan="3" CornerRadius="10">
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Offset="0" Color="#FF573EF7" />
+                        <GradientStop Offset="0.9" Color="#FF3ADA4E" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <StackPanel>
+                <Button
+                    Width="30"
+                    Height="30"
+                    Margin="0,3,20,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Command="{Binding CloseCommand}"
+                    Content="X" />
+
+
+            </StackPanel>
+            <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                <Image
+                    Width="150"
+                    SnapsToDevicePixels="true"
+                    Source="/Resources/imgs/logoColorFill.png" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="2">
+                <StackPanel Orientation="Horizontal">
+                    <TextBox
+                        Name="loginField"
+                        Width="236"
+                        Height="30"
+                        Margin="60,0,0,0"
+                        HorizontalAlignment="Center"
+                        HorizontalContentAlignment="Left"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        FontSize="20"
+                        Foreground="White"
+                        Opacity="0.5"
+                        Text="{Binding Path=authoForm.Login, Mode=TwoWay}" />
+                    <Image
+                        Width="20"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Source="/Resources/imgs/loginIcon.png" />
+                </StackPanel>
+                <Border
+                    Width="255"
+                    Height="2"
+                    Background="white"
+                    Opacity="0.5" />
+
+                <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
+                    <PasswordBox
+                        Name="passwordField"
+                        Width="236"
+                        Height="30"
+                        Margin="60,0,0,0"
+                        HorizontalAlignment="Center"
+                        HorizontalContentAlignment="Left"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        FontSize="20"
+                        Foreground="White"
+                        Opacity="0.5"
+                        Password="Username" 
+                        />
+                    <Image
+                        Width="20"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Source="/Resources/imgs/passwordIcon.png" />
+                </StackPanel>
+                <Border
+                    Width="255"
+                    Height="2"
+                    Background="white"
+                    Opacity="0.5" />
+
+                <StackPanel
+                    Margin="60,20,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
+
+                    <CheckBox
+                        Content="Remember"
+                        FontSize="13"
+                        Foreground="White"
+                        Opacity="0.7" />
+                </StackPanel>
+                <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
+                    <Button
+                        Width="110"
+                        Height="40"
+                        Margin="60,0,0,0"
+                        Command="{Binding loginCommand}"
+                        Content="LOGIN" 
+                        CommandParameter="{Binding ElementName=passwordField}"/>
+                    <Button
+                        Width="110"
+                        Height="40"
+                        Margin="40,0,60,0"
+                        Content="REGISTER" />
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="60,10,0,0"
+                        FontSize="10"
+                        FontWeight="Normal"
+                        Foreground="white"
+                        Opacity="0.8"
+                        Text="Забыли логин или пароль?"
+                        Visibility="Hidden" />
+                    <TextBlock
+                        Margin="2,10,0,0"
+                        FontSize="10"
+                        FontWeight="Bold"
+                        Foreground="White"
+                        Text="Востановить?"
+                        Visibility="Hidden" />
+                </StackPanel>
+            </StackPanel>
+
+
+
+
+
+
+
+
+        </Grid>
+    </Grid>
+</Window>
