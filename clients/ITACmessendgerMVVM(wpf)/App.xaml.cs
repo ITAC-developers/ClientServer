@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ITACmessendgerMVVM_wpf_.Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,12 @@ namespace ITACmessendgerMVVM_wpf_
     /// </summary>
     public partial class App : Application
     {
-    }
+		private void Application_Startup(object sender, StartupEventArgs e)
+		{
+			locatorWindows lWindows = new locatorWindows();
+            
+            lWindows.StartupWindow(Windows[0]);
+            lWindows.StartupWindow(Windows[1]);
+        }
+	}
 }

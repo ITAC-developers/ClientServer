@@ -56,7 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Models\locator.cs" />
+    <Compile Include="Models\locatorWindows.cs" />
     <Compile Include="Models\messegeJson.cs" />
     <Compile Include="Models\messengerCommands.cs" />
     <Compile Include="ViewModels\AuthorizationViewModel.cs" />

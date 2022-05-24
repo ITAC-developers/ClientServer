@@ -22,7 +22,7 @@ namespace ITACmessendgerMVVM_wpf_.ViewModels
             loginCommand = new messengerCommands(login);
             CloseCommand = new messengerCommands(closeLogin);
             authoForm = new authorizateForm();
-            authoForm.Login = "Username";
+            //authoForm.Login = "Username";
            // authoForm.Password = "Password";
             authoForm.IsAuthirizated = false;
             authoForm.IsRemembered = false;

@@ -31,8 +31,8 @@ namespace ITACmessendgerMVVM_wpf_.ViewModels
         {
             clientStatic.connectToSetver();
             clientStatic.sendMsg("Static send messege\n");
-            loginForm = new Authorization();
-            loginForm.Show();
+            //loginForm = new Authorization();
+            //loginForm.Show();
 
         }
 
